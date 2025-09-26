@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ChercherDieu.com — Accueil</title>
+  <meta name="description" content="Chercher Dieu et sa Parole — Actes 17: Il n'est pas loin de chacun de nous." />
+  <link rel="canonical" href="https://chercherdieu.com/" />
+  <meta property="og:title" content="Chercher Dieu" />
+  <meta property="og:description" content="Actes 17 — Dieu n'habite pas dans des temples faits de main d'homme… Il n'est pas loin de chacun de nous." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://chercherdieu.com/" />
+  <meta name="theme-color" content="#0f172a" />
+  <style>
+    :root{
+      --bg1:#0f172a;--bg2:#1e293b;--text:#e5e7eb;--muted:#94a3b8;--accent:#f8fafc;--btn:rgba(255,255,255,.1);--brd:rgba(255,255,255,.2);--card:rgba(255,255,255,.06);--cardb:rgba(255,255,255,.12);--sh:0 10px 30px rgba(0,0,0,.35)
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,Cantarell,"Noto Sans","Helvetica Neue",Arial;color:var(--text);background:radial-gradient(1100px 700px at 20% -10%,#1f2937 0,transparent 50%),radial-gradient(900px 600px at 120% 120%,#22d3ee 0,transparent 45%),linear-gradient(135deg,var(--bg1),var(--bg2));background-attachment:fixed}
+    .wrap{min-height:100%;display:grid;place-items:center;padding:24px}
+    .card{width:100%;max-width:980px;background:var(--card);border:1px solid var(--cardb);border-radius:24px;box-shadow:var(--sh);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:28px 28px 22px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#22d3ee,#38bdf8,#6366f1);border:1px solid var(--brd);box-shadow:inset 0 0 12px rgba(255,255,255,.3),0 6px 18px rgba(2,132,199,.25)}
+    h1{margin:0;font-size:clamp(22px,3.4vw,36px);letter-spacing:.4px}
+    .sub{margin-top:6px;color:var(--muted);font-size:14px}
+    .lang{display:flex;gap:8px;align-items:center}
+    .btn{border:1px solid var(--brd);background:var(--btn);color:var(--accent);padding:8px 12px;border-radius:12px;cursor:pointer;font-weight:600;transition:transform .06s ease,background .2s ease,border-color .2s ease;user-select:none}
+    .btn:hover{transform:translateY(-1px)}
+    .btn.active{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.35)}
+    main{margin-top:18px}
+    .verse{font-size:clamp(18px,2.4vw,24px);line-height:1.65;margin:14px 0 8px;text-wrap:pretty}
+    .ref{color:var(--muted);margin-top:4px;font-size:14px}
+    .coming{margin-top:8px;font-size:14px;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:22px}
+    .cta,.link{display:inline-flex;align-items:center;gap:8px;text-decoration:none;border:1px solid var(--brd);background:var(--btn);color:var(--accent);padding:10px 14px;border-radius:12px;font-weight:700}
+    footer{margin-top:24px;padding-top:16px;border-top:1px solid var(--cardb);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+    .small{font-size:12px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card" role="region" aria-label="Accueil Chercher Dieu">
+      <header>
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <h1>Chercher Dieu</h1>
+            <div class="sub" id="tagline"></div>
+          </div>
+        </div>
+        <div class="lang" aria-label="Changer de langue">
+          <button class="btn" id="btn-fr" type="button">Français</button>
+          <button class="btn" id="btn-en" type="button">English</button>
+        </div>
+      </header>
+
+      <main>
+        <p class="verse" id="verse"></p>
+        <div class="ref" id="ref"></div>
+        <div class="coming" id="coming"></div>
+
+        <div class="grid">
+          <a class="cta" id="cta-read" href="#" target="_blank" rel="noopener">📖 <span></span></a>
+          <a class="link" id="cta-word" href="https://thewordofgod.fr" target="_blank" rel="noopener">🔗 thewordofgod.fr</a>
+        </div>
+      </main>
+
+      <footer>
+        <div id="foot"></div>
+        <div class="small">© <span id="year"></span> chercherdieu.com</div>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      // Actes 17 — passages clés
+      const FR = {
+        verses:[
+          {text:"Le Dieu qui a fait le monde et tout ce qui s'y trouve, étant le Seigneur du ciel et de la terre, n'habite point dans des temples faits de main d'homme." , ref:"Actes 17:24"},
+          {text:"Il a fait que tous les hommes, sortis d'un seul, habitent sur toute la surface de la terre… afin qu'ils cherchent le Seigneur, et qu'ils s'efforcent de le trouver en tâtonnant, bien qu'il ne soit pas loin de chacun de nous." , ref:"Actes 17:26-27"},
+          {text:"Car en lui nous avons la vie, le mouvement, et l'être." , ref:"Actes 17:28"}
+        ],
+        tagline:"Actes 17 — Chercher et trouver Dieu.",
+        coming:"Un site pour faire connaître Dieu et sa Parole — en construction…",
+        read:"Lire Actes 17",
+        foot:"« Il n'est pas loin de chacun de nous. »"
+      };
+
+      const EN = {
+        verses:[
+          {text:"The God who made the world and everything in it is the Lord of heaven and earth and does not live in temples built by human hands." , ref:"Acts 17:24"},
+          {text:"From one man he made all the nations… God did this so that they would seek him and perhaps reach out for him and find him, though he is not far from any one of us." , ref:"Acts 17:26-27"},
+          {text:"For in him we live and move and have our being." , ref:"Acts 17:28"}
+        ],
+        tagline:"Acts 17 — To seek and find God.",
+        coming:"A site to make God and his Word known — under construction…",
+        read:"Read Acts 17",
+        foot:"“He is not far from any one of us.”"
+      };
+
+      const els={
+        verse:document.getElementById('verse'),
+        ref:document.getElementById('ref'),
+        tagline:document.getElementById('tagline'),
+        coming:document.getElementById('coming'),
+        ctaRead:document.getElementById('cta-read'),
+        ctaReadSpan:document.querySelector('#cta-read span'),
+        foot:document.getElementById('foot'),
+        year:document.getElementById('year'),
+        btnFr:document.getElementById('btn-fr'),
+        btnEn:document.getElementById('btn-en')
+      };
+
+      const saved = localStorage.getItem('cd-lang');
+      const prefers = saved || ((navigator.language||'en').toLowerCase().startsWith('fr')?'fr':'en');
+      let lang=prefers, i=0, timer=null;
+
+      function t(){return lang==='fr'?FR:EN}
+
+      function render(){
+        const S=t();
+        const v=S.verses[i%S.verses.length];
+        els.verse.textContent=v.text;
+        els.ref.textContent=v.ref;
+        els.tagline.textContent=S.tagline;
+        els.coming.textContent=S.coming;
+        els.ctaReadSpan.textContent=S.read+" →";
+        els.ctaRead.href = lang==='fr' ? 'https://www.bible.com/fr/bible/LSG/ACT.17' : 'https://www.bible.com/bible/111/ACT.17.NIV';
+        els.foot.textContent=S.foot;
+        document.documentElement.lang=lang;
+        els.btnFr.classList.toggle('active',lang==='fr');
+        els.btnEn.classList.toggle('active',lang==='en');
+      }
+
+      function setLang(L){lang=L;i=0;localStorage.setItem('cd-lang',lang);render();restart()}
+      function restart(){if(timer)clearInterval(timer);timer=setInterval(()=>{i++;render()},30000)}
+
+      els.btnFr.addEventListener('click',()=>setLang('fr'))
+      els.btnEn.addEventListener('click',()=>setLang('en'))
+
+      els.year.textContent=new Date().getFullYear();
+      setLang(prefers);
+    })();
+  </script>
+</body>
+</html>
