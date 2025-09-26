@@ -32,6 +32,7 @@
     .verse{font-size:clamp(18px,2.4vw,24px);line-height:1.65;margin:14px 0 8px;text-wrap:pretty}
     .ref{color:var(--muted);margin-top:4px;font-size:14px}
     .coming{margin-top:8px;font-size:14px;color:var(--muted)}
+    .seek{margin-top:16px;padding:12px 14px;border-radius:14px;border:1px dashed var(--cardb);background:rgba(255,255,255,.05)}
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:22px}
     .cta,.link{display:inline-flex;align-items:center;gap:8px;text-decoration:none;border:1px solid var(--brd);background:var(--btn);color:var(--accent);padding:10px 14px;border-radius:12px;font-weight:700}
     footer{margin-top:24px;padding-top:16px;border-top:1px solid var(--cardb);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
@@ -60,8 +61,11 @@
         <div class="ref" id="ref"></div>
         <div class="coming" id="coming"></div>
 
+        <div class="seek" id="seek-block"></div>
+
         <div class="grid">
           <a class="cta" id="cta-read" href="#" target="_blank" rel="noopener">📖 <span></span></a>
+          <a class="cta" id="cta-seek" href="#" target="_blank" rel="noopener">🔎 <span></span></a>
           <a class="link" id="cta-word" href="https://thewordofgod.fr" target="_blank" rel="noopener">🔗 thewordofgod.fr</a>
         </div>
       </main>
@@ -75,16 +79,20 @@
 
   <script>
     (function(){
-      // Actes 17 — passages clés
+      // Actes 17 — passages clés + bloc "chercher Dieu" (v.26-27)
       const FR = {
         verses:[
           {text:"Le Dieu qui a fait le monde et tout ce qui s'y trouve, étant le Seigneur du ciel et de la terre, n'habite point dans des temples faits de main d'homme." , ref:"Actes 17:24"},
           {text:"Il a fait que tous les hommes, sortis d'un seul, habitent sur toute la surface de la terre… afin qu'ils cherchent le Seigneur, et qu'ils s'efforcent de le trouver en tâtonnant, bien qu'il ne soit pas loin de chacun de nous." , ref:"Actes 17:26-27"},
           {text:"Car en lui nous avons la vie, le mouvement, et l'être." , ref:"Actes 17:28"}
         ],
+        seekBlock:"« …afin qu'ils cherchent le Seigneur, et qu'ils s'efforcent de le trouver en tâtonnant, bien qu'il ne soit pas loin de chacun de nous. » (Actes 17:27)",
         tagline:"Actes 17 — Chercher et trouver Dieu.",
         coming:"Un site pour faire connaître Dieu et sa Parole — en construction…",
         read:"Lire Actes 17",
+        readUrl:"https://www.biblegateway.com/passage/?search=Actes%2017&version=LSG",
+        seek:"Chercher Dieu (Actes 17:26–27)",
+        seekUrl:"https://www.biblegateway.com/passage/?search=Actes%2017%3A26-27&version=LSG",
         foot:"« Il n'est pas loin de chacun de nous. »"
       };
 
@@ -94,9 +102,13 @@
           {text:"From one man he made all the nations… God did this so that they would seek him and perhaps reach out for him and find him, though he is not far from any one of us." , ref:"Acts 17:26-27"},
           {text:"For in him we live and move and have our being." , ref:"Acts 17:28"}
         ],
+        seekBlock:"“God did this so that they would seek him and perhaps reach out for him and find him, though he is not far from any one of us.” (Acts 17:27)",
         tagline:"Acts 17 — To seek and find God.",
         coming:"A site to make God and his Word known — under construction…",
         read:"Read Acts 17",
+        readUrl:"https://www.biblegateway.com/passage/?search=Acts%2017&version=NIV",
+        seek:"Seek God (Acts 17:26–27)",
+        seekUrl:"https://www.biblegateway.com/passage/?search=Acts%2017%3A26-27&version=NIV",
         foot:"“He is not far from any one of us.”"
       };
 
@@ -105,8 +117,11 @@
         ref:document.getElementById('ref'),
         tagline:document.getElementById('tagline'),
         coming:document.getElementById('coming'),
+        seekBlock:document.getElementById('seek-block'),
         ctaRead:document.getElementById('cta-read'),
         ctaReadSpan:document.querySelector('#cta-read span'),
+        ctaSeek:document.getElementById('cta-seek'),
+        ctaSeekSpan:document.querySelector('#cta-seek span'),
         foot:document.getElementById('foot'),
         year:document.getElementById('year'),
         btnFr:document.getElementById('btn-fr'),
@@ -126,8 +141,11 @@
         els.ref.textContent=v.ref;
         els.tagline.textContent=S.tagline;
         els.coming.textContent=S.coming;
+        els.seekBlock.textContent=S.seekBlock;
         els.ctaReadSpan.textContent=S.read+" →";
-        els.ctaRead.href = lang==='fr' ? 'https://www.bible.com/fr/bible/LSG/ACT.17' : 'https://www.bible.com/bible/111/ACT.17.NIV';
+        els.ctaRead.href = S.readUrl;
+        els.ctaSeekSpan.textContent=S.seek+" →";
+        els.ctaSeek.href = S.seekUrl;
         els.foot.textContent=S.foot;
         document.documentElement.lang=lang;
         els.btnFr.classList.toggle('active',lang==='fr');
@@ -146,3 +164,4 @@
   </script>
 </body>
 </html>
+
