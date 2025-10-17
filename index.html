@@ -10,29 +10,26 @@
   <meta property="og:description" content="Actes 17 — Il n'est pas loin de chacun de nous." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://chercherdieu.com/" />
-  <meta name="theme-color" content="#3b0d0c" />
+  <meta name="theme-color" content="#1e40af" />
   <style>
-    /*
-      Nouveau thème pour se différencier de thewordofgod.fr
-      Palette : coucher de soleil (terre cuite, ambre, rose), textures douces
-      Typo : titre avec une touche sérif, corps sans-sérif
-    */
     :root{
-      --bg1:#3b0d0c; /* bordeaux profond */
-      --bg2:#7a1e20; /* rouge terre cuite */
-      --glow1:#ffedd5; /* ambre clair */
-      --glow2:#fecaca; /* rose pâle */
-      --card:#2b0a0a99; /* verre sombre rouge */
+      /* Thème bleu façon TheWord */
+      --bg1:#0ea5e9; /* sky-500 */
+      --bg2:#2563eb; /* indigo-600 */
+      --glow1:#bfdbfe22;
+      --glow2:#93c5fd22;
+      --card:#0b122480;       /* verre sombre bleu */
       --card-brd:#ffffff22;
-      --text:#fef2f2; /* très clair rosé */
-      --muted:#fca5a5; /* rose désaturé */
-      --accent:#fff7ed; /* ambre très clair */
+      --text:#eaf2ff;
+      --muted:#c7d2fe;
+      --accent:#ffffff;
       --btn:#ffffff12;
       --btn-brd:#ffffff33;
       --shadow:0 12px 36px rgba(0,0,0,.45);
     }
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0;color:var(--text);
+    html,body{
+      height:100%;margin:0;color:var(--text);
       font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Inter, Arial;
       background:
         radial-gradient(1200px 800px at 10% -20%, var(--glow1) 0%, transparent 55%),
@@ -41,30 +38,50 @@
       background-attachment: fixed;
     }
     .wrap{min-height:100%;display:grid;place-items:center;padding:24px}
-    .card{width:100%;max-width:980px;background:var(--card);border:1px solid var(--card-brd);border-radius:28px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:var(--shadow);padding:28px 28px 22px}
+    .card{
+      width:100%;max-width:980px;background:var(--card);
+      border:1px solid var(--card-brd);border-radius:28px;
+      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+      box-shadow:var(--shadow);padding:28px 28px 22px
+    }
 
     header{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
     .brand{display:flex;align-items:center;gap:14px}
-    .logo{width:46px;height:46px;border-radius:14px;border:1px solid var(--btn-brd);
-      background: conic-gradient(from 220deg, #fb7185, #f59e0b, #fcd34d, #fb7185);
-      box-shadow: inset 0 0 18px rgba(255,255,255,.35), 0 8px 22px rgba(251,113,133,.35);
+    .logo{
+      width:46px;height:46px;border-radius:14px;border:1px solid var(--btn-brd);
+      background: conic-gradient(from 220deg, #60a5fa, #38bdf8, #22d3ee, #60a5fa);
+      box-shadow: inset 0 0 18px rgba(255,255,255,.35), 0 8px 22px rgba(59,130,246,.35);
     }
-    h1{margin:0;letter-spacing:.4px;font-size:clamp(24px,3.6vw,40px);font-family: ui-serif, "Times New Roman", Georgia, Cambria, "Noto Serif", serif;}
+    h1{margin:0;letter-spacing:.4px;font-size:clamp(24px,3.6vw,40px);font-weight:800}
     .sub{margin-top:6px;color:var(--muted);font-size:14px}
 
     .lang{display:flex;gap:8px;align-items:center}
-    .btn{border:1px solid var(--btn-brd);background:var(--btn);color:var(--accent);padding:8px 12px;border-radius:12px;cursor:pointer;font-weight:700;letter-spacing:.2px;transition:transform .06s ease, background .2s ease, border-color .2s ease}
+    .btn{
+      border:1px solid var(--btn-brd);background:var(--btn);color:var(--accent);
+      padding:8px 12px;border-radius:12px;cursor:pointer;font-weight:700;letter-spacing:.2px;
+      transition:transform .06s ease, background .2s ease, border-color .2s ease
+    }
     .btn:hover{transform:translateY(-1px)}
     .btn.active{background:#ffffff26;border-color:#ffffff55}
 
     main{margin-top:18px}
-    .verse{font-size:clamp(18px,2.4vw,24px);line-height:1.7;margin:14px 0 8px;text-wrap:pretty}
-    .ref{color:var(--muted);margin-top:4px;font-size:14px}
+    .ref{color:var(--muted);margin-top:8px;font-size:14px}
     .coming{margin-top:10px;font-size:14px;color:var(--muted)}
-    .seek{margin-top:18px;padding:14px;border-radius:16px;border:1px dashed var(--card-brd);background:#ffffff0e}
+    .passage{
+      margin:16px 0 10px;padding:14px;border-radius:16px;border:1px solid var(--card-brd);background:#ffffff0e
+    }
+    blockquote{margin:0}
+    .vline{margin:10px 0;line-height:1.75;font-size:18px}
+    .vnum{
+      display:inline-block;min-width:1.6em;text-align:right;margin-right:.4em;
+      font-variant-numeric: tabular-nums;opacity:.8;font-weight:700
+    }
 
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:22px}
-    .cta,.link{display:inline-flex;align-items:center;gap:8px;text-decoration:none;border:1px solid var(--btn-brd);background:var(--btn);color:var(--accent);padding:11px 14px;border-radius:14px;font-weight:800}
+    .cta,.link{
+      display:inline-flex;align-items:center;gap:8px;text-decoration:none;border:1px solid var(--btn-brd);
+      background:var(--btn);color:var(--accent);padding:11px 14px;border-radius:14px;font-weight:800
+    }
 
     footer{margin-top:24px;padding-top:16px;border-top:1px solid var(--card-brd);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
     .small{font-size:12px}
@@ -79,7 +96,7 @@
           <div class="logo" aria-hidden="true"></div>
           <div>
             <h1>Chercher Dieu</h1>
-            <div class="sub" id="tagline"></div>
+            <div class="sub" id="tagline">Actes 17 — Chercher et trouver Dieu.</div>
           </div>
         </div>
         <div class="lang" aria-label="Changer de langue">
@@ -89,22 +106,20 @@
       </header>
 
       <main>
-        <p class="verse" id="verse"></p>
-        <div class="ref" id="ref"></div>
-        <div class="coming" id="coming"></div>
-
-        <div class="seek" id="seek-block"></div>
+        <div class="passage" id="passage">
+          <!-- Contenu FR/EN injecté par JS -->
+        </div>
+        <div class="ref" id="ref">Actes 17:24–27</div>
+        <div class="coming" id="coming">Un site pour faire connaître Dieu et sa Parole — en construction…</div>
 
         <div class="grid">
-          <a class="cta" id="cta-read" href="#" target="_blank" rel="noopener">📖 <span></span></a>
-          <a class="cta" id="cta-seek" href="#" target="_blank" rel="noopener">🔎 <span></span></a>
-          <a class="link" id="cta-word" href="https://www.thewordofgod.fr" target="_blank" rel="noopener">🔗 thewordofgod.fr</a>
+          <a class="cta" id="cta-word" href="https://www.theword.fr" target="_blank" rel="noopener">🔗 Ouvrir theword.fr</a>
           <a class="link" href="mailto:contact@chercherdieu.com">✉️ contact@chercherdieu.com</a>
         </div>
       </main>
 
       <footer>
-        <div id="foot"></div>
+        <div id="foot">« Il n'est pas loin de chacun de nous. »</div>
         <div class="small">© <span id="year"></span> chercherdieu.com</div>
       </footer>
     </div>
@@ -112,84 +127,69 @@
 
   <script>
     (function(){
-      // Actes 17 — passages clés + bloc "chercher Dieu" (v.26-27)
-      const FR = {
-        verses:[
-          {text:"Le Dieu qui a fait le monde et tout ce qui s'y trouve, étant le Seigneur du ciel et de la terre, n'habite point dans des temples faits de main d'homme." , ref:"Actes 17:24"},
-          {text:"Il a fait que tous les hommes, sortis d'un seul, habitent sur toute la surface de la terre… afin qu'ils cherchent le Seigneur, et qu'ils s'efforcent de le trouver en tâtonnant, bien qu'il ne soit pas loin de chacun de nous." , ref:"Actes 17:26-27"},
-          {text:"Car en lui nous avons la vie, le mouvement, et l'être." , ref:"Actes 17:28"}
-        ],
-        seekBlock:"« …afin qu'ils cherchent le Seigneur, et qu'ils s'efforcent de le trouver en tâtonnant, bien qu'il ne soit pas loin de chacun de nous. » (Actes 17:27)",
-        tagline:"Actes 17 — Chercher et trouver Dieu.",
-        coming:"Un site pour faire connaître Dieu et sa Parole — en construction…",
-        read:"Lire Actes 17",
-        readUrl:"https://www.biblegateway.com/passage/?search=Actes%2017&version=LSG",
-        seek:"Chercher Dieu (Actes 17:26–27)",
-        seekUrl:"https://www.biblegateway.com/passage/?search=Actes%2017%3A26-27&version=LSG",
-        foot:"« Il n'est pas loin de chacun de nous. »"
-      };
+      // Texte complet d'Actes 17:24–27
+      // FR : LSG (domaine public, style classique)
+      const PASSAGE_FR = [
+        { n: 24, t: "Le Dieu qui a fait le monde et tout ce qui s'y trouve, étant le Seigneur du ciel et de la terre, n'habite point dans des temples faits de main d'homme;" },
+        { n: 25, t: "Il n'est point servi par des mains humaines, comme s'il avait besoin de quelque chose, lui qui donne à tous la vie, la respiration et toutes choses;" },
+        { n: 26, t: "Il a fait que tous les hommes, sortis d'un seul, habitent sur toute la surface de la terre, ayant déterminé la durée des temps et les bornes de leur demeure;" },
+        { n: 27, t: "afin qu'ils cherchent le Seigneur, et qu'ils s'efforcent de le trouver en tâtonnant, bien qu'il ne soit pas loin de chacun de nous;" }
+      ];
 
-      const EN = {
-        verses:[
-          {text:"The God who made the world and everything in it is the Lord of heaven and earth and does not live in temples built by human hands." , ref:"Acts 17:24"},
-          {text:"From one man he made all the nations… God did this so that they would seek him and perhaps reach out for him and find him, though he is not far from any one of us." , ref:"Acts 17:26-27"},
-          {text:"For in him we live and move and have our being." , ref:"Acts 17:28"}
-        ],
-        seekBlock:"“God did this so that they would seek him and perhaps reach out for him and find him, though he is not far from any one of us.” (Acts 17:27)",
-        tagline:"Acts 17 — To seek and find God.",
-        coming:"A site to make God and his Word known — under construction…",
-        read:"Read Acts 17",
-        readUrl:"https://www.biblegateway.com/passage/?search=Acts%2017&version=NIV",
-        seek:"Seek God (Acts 17:26–27)",
-        seekUrl:"https://www.biblegateway.com/passage/?search=Acts%2017%3A26-27&version=NIV",
-        foot:"“He is not far from any one of us.”"
-      };
+      // EN : KJV (public domain)
+      const PASSAGE_EN = [
+        { n: 24, t: "God that made the world and all things therein, seeing that he is Lord of heaven and earth, dwelleth not in temples made with hands;" },
+        { n: 25, t: "Neither is worshipped with men's hands, as though he needed any thing, seeing he giveth to all life, and breath, and all things;" },
+        { n: 26, t: "And hath made of one blood all nations of men for to dwell on all the face of the earth, and hath determined the times before appointed, and the bounds of their habitation;" },
+        { n: 27, t: "That they should seek the Lord, if haply they might feel after him, and find him, though he be not far from every one of us:" }
+      ];
 
-      const els={
-        verse:document.getElementById('verse'),
-        ref:document.getElementById('ref'),
-        tagline:document.getElementById('tagline'),
-        coming:document.getElementById('coming'),
-        seekBlock:document.getElementById('seek-block'),
-        ctaRead:document.getElementById('cta-read'),
-        ctaReadSpan:document.querySelector('#cta-read span'),
-        ctaSeek:document.getElementById('cta-seek'),
-        ctaSeekSpan:document.querySelector('#cta-seek span'),
-        foot:document.getElementById('foot'),
-        year:document.getElementById('year'),
-        btnFr:document.getElementById('btn-fr'),
-        btnEn:document.getElementById('btn-en')
+      const els = {
+        passage: document.getElementById('passage'),
+        ref: document.getElementById('ref'),
+        foot: document.getElementById('foot'),
+        year: document.getElementById('year'),
+        btnFr: document.getElementById('btn-fr'),
+        btnEn: document.getElementById('btn-en'),
+        ctaWord: document.getElementById('cta-word')
       };
 
       const saved = localStorage.getItem('cd-lang');
       const prefers = saved || ((navigator.language||'en').toLowerCase().startsWith('fr')?'fr':'en');
-      let lang=prefers, i=0, timer=null;
+      let lang = prefers;
 
-      function t(){return lang==='fr'?FR:EN}
-      function render(){
-        const S=t();
-        const v=S.verses[i%S.verses.length];
-        els.verse.textContent=v.text;
-        els.ref.textContent=v.ref;
-        els.tagline.textContent=S.tagline;
-        els.coming.textContent=S.coming;
-        els.seekBlock.textContent=S.seekBlock;
-        els.ctaReadSpan.textContent=S.read+" →";
-        els.ctaRead.href = S.readUrl;
-        els.ctaSeekSpan.textContent=S.seek+" →";
-        els.ctaSeek.href = S.seekUrl;
-        els.foot.textContent=S.foot;
-        document.documentElement.lang=lang;
-        els.btnFr.classList.toggle('active',lang==='fr');
-        els.btnEn.classList.toggle('active',lang==='en');
+      function linesHTML(lines){
+        return '<blockquote>' + lines.map(v =>
+          `<p class="vline"><span class="vnum">${v.n}</span>${v.t}</p>`
+        ).join('') + '</blockquote>';
       }
-      function setLang(L){lang=L;i=0;localStorage.setItem('cd-lang',lang);render();restart()}
-      function restart(){if(timer)clearInterval(timer);timer=setInterval(()=>{i++;render()},30000)}
 
-      els.btnFr.addEventListener('click',()=>setLang('fr'))
-      els.btnEn.addEventListener('click',()=>setLang('en'))
+      function render(){
+        if(lang==='fr'){
+          els.passage.innerHTML = linesHTML(PASSAGE_FR);
+          els.ref.textContent = "Actes 17:24–27";
+          document.documentElement.lang = 'fr';
+          els.btnFr.classList.add('active');
+          els.btnEn.classList.remove('active');
+          els.foot.textContent = "« Il n'est pas loin de chacun de nous. »";
+          els.ctaWord.textContent = "🔗 Ouvrir theword.fr";
+        }else{
+          els.passage.innerHTML = linesHTML(PASSAGE_EN);
+          els.ref.textContent = "Acts 17:24–27";
+          document.documentElement.lang = 'en';
+          els.btnEn.classList.add('active');
+          els.btnFr.classList.remove('active');
+          els.foot.textContent = "“He is not far from any one of us.”";
+          els.ctaWord.textContent = "🔗 Open theword.fr";
+        }
+      }
 
-      els.year.textContent=new Date().getFullYear();
+      function setLang(L){ lang=L; localStorage.setItem('cd-lang', lang); render(); }
+
+      els.btnFr.addEventListener('click', ()=>setLang('fr'));
+      els.btnEn.addEventListener('click', ()=>setLang('en'));
+
+      els.year.textContent = new Date().getFullYear();
       setLang(prefers);
     })();
   </script>
