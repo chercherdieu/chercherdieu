@@ -44,8 +44,8 @@
 
       --bottomH: 72px;
 
-      /* YouTube */
-      --yt:#ff0033;
+      /* YouTube red (logo only) */
+      --yt:#FF0033;
     }
 
     *{box-sizing:border-box}
@@ -203,7 +203,7 @@
       min-height: 0;
       display:flex;
       flex-direction:column;
-      gap:10px;
+      gap:8px;
     }
 
     .miniTitle{
@@ -226,40 +226,9 @@
       color: rgba(238,245,255,.92);
     }
 
-    /* ✅ Bouton TheWord à gauche sous texte (sans "ouvrir") */
-    .miniActions{
-      display:flex;
-      align-items:center;
-      justify-content:flex-start; /* ✅ à gauche */
-      gap:10px;
-      padding-top: 2px;
-    }
-
-    .miniBtn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      text-decoration:none;
-      color: var(--text);
-      font-weight: 950;
-      letter-spacing:.15px;
-      border-radius: 14px;
-      padding: 10px 12px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      transition: transform .08s ease, background .2s ease, border-color .2s ease;
-      width: fit-content;
-    }
-    .miniBtn:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.09);
-      border-color: rgba(255,255,255,.20);
-    }
-
     @media (max-height: 720px){
       .below{ gap:8px; }
-      .miniCard{ padding: 10px; gap:8px; }
+      .miniCard{ padding: 10px; gap:6px; }
       .miniText{ font-size: 13px; }
       .sub{ display:none; }
     }
@@ -306,7 +275,7 @@
       border-radius: 14px;
       padding: 12px 10px;
       border:1px solid transparent;
-      background: rgba(255,255,255,.04);
+      background: rgba(255,255,255,.04); /* ✅ même couleur sombre partout */
       transition: transform .08s ease, background .2s ease, border-color .2s ease;
       white-space:nowrap;
       min-height: 46px;
@@ -317,34 +286,34 @@
       border-color: rgba(255,255,255,.12);
     }
 
-    /* ✅ Bouton YouTube officiel-like au milieu */
+    /* ✅ YouTube plus gros au milieu, sans fond rouge */
     .navItem.youtube{
-      flex: 1.15;
-      background: linear-gradient(180deg, rgba(255,0,51,.18), rgba(255,255,255,.04));
-      border-color: rgba(255,0,51,.35);
-    }
-    .navItem.youtube:hover{
-      border-color: rgba(255,0,51,.60);
-      background: linear-gradient(180deg, rgba(255,0,51,.22), rgba(255,255,255,.05));
+      flex: 1.18;
     }
 
     .icon{ width:20px;height:20px; display:inline-block; }
     .label{ font-size: 14px; }
 
-    .ytBrand{
+    .ytWrap{
       display:flex;
       align-items:center;
-      gap:10px;
+      justify-content:center;
+      gap:12px;
     }
-    .ytLogo{
-      height:18px;
-      width:auto;
+    .ytIcon{
+      width:34px;  /* ✅ plus gros */
+      height:24px; /* ✅ plus gros */
       display:block;
     }
     .ytText{
+      font-size: 16px; /* ✅ plus gros */
       font-weight: 950;
-      letter-spacing: .1px;
-      font-size: 14px;
+      letter-spacing:.1px;
+    }
+
+    @media (max-width: 520px){
+      .ytText{ font-size: 15px; }
+      .ytIcon{ width:30px; height:22px; }
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -379,13 +348,6 @@
             <p class="miniText" id="twText">
               Bible gratuite 100% hors ligne en 16 langues. Lecture, recherche, notes et études.
             </p>
-
-            <!-- ✅ bouton à gauche sous texte + sans "ouvrir" -->
-            <div class="miniActions">
-              <a class="miniBtn" href="https://www.theword.fr" target="_blank" rel="noopener" aria-label="TheWord">
-                TheWord
-              </a>
-            </div>
           </div>
 
           <div class="miniCard">
@@ -397,7 +359,6 @@
     </div>
   </div>
 
-  <!-- ✅ Barre du bas : gauche TheWord / milieu YouTube / droite Contact -->
   <nav class="bottomBar" aria-label="Navigation">
     <div class="bottomInner">
 
@@ -411,23 +372,19 @@
         <span class="label" id="navWord">TheWord</span>
       </a>
 
-      <!-- Milieu : YouTube (logo "officiel-like") -->
+      <!-- Milieu : YouTube (gros logo officiel + texte) -->
       <a class="navItem youtube" href="https://youtube.com/@chercherdieu?si=5hk5jDcWrvlgVpFT" target="_blank" rel="noopener" aria-label="YouTube ChercherDieu">
-        <span class="ytBrand" aria-hidden="true">
-          <!-- YouTube play + wordmark (SVG inline) -->
-          <svg class="ytLogo" viewBox="0 0 140 32">
-            <!-- play container -->
-            <rect x="0" y="4" rx="8" ry="8" width="44" height="24" fill="#FF0033"></rect>
-            <polygon points="18,10 18,22 30,16" fill="#FFFFFF"></polygon>
-            <!-- text "YouTube" -->
-            <text x="54" y="22" fill="#FFFFFF" font-size="18" font-weight="900" font-family="Arial, Inter, system-ui">
-              YouTube
-            </text>
+        <span class="ytWrap">
+          <!-- Official-like YouTube logo: red rounded rect + white play -->
+          <svg class="ytIcon" viewBox="0 0 32 24" aria-hidden="true">
+            <rect x="0" y="2" width="32" height="20" rx="6" fill="var(--yt)"></rect>
+            <polygon points="13,7.5 13,16.5 21,12" fill="#ffffff"></polygon>
           </svg>
+          <span class="ytText" id="navYoutube">YouTube</span>
         </span>
       </a>
 
-      <!-- Droite : Contact (email complet) -->
+      <!-- Droite : Contact -->
       <a class="navItem" href="mailto:contact@chercherdieu.com" aria-label="Contact email">
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none">
           <path d="M5.2 7.4h13.6c.9 0 1.6.7 1.6 1.6v8.6c0 .9-.7 1.6-1.6 1.6H5.2c-.9 0-1.6-.7-1.6-1.6V9c0-.9.7-1.6 1.6-1.6Z" stroke="rgba(255,255,255,.65)" stroke-width="1.4"/>
@@ -465,6 +422,7 @@
         passageJer: document.getElementById('passageJer'),
         twTitle: document.getElementById('twTitle'),
         twText: document.getElementById('twText'),
+        navYoutube: document.getElementById('navYoutube'),
       };
 
       function linesHTML(lines){
@@ -490,6 +448,7 @@
           els.passageJer.textContent = `« ${JER_FR} »`;
           els.twTitle.textContent = "The Word";
           els.twText.textContent = "Bible gratuite 100% hors ligne en 16 langues. Lecture, recherche, notes et études.";
+          els.navYoutube.textContent = "YouTube";
         }else{
           document.documentElement.lang = 'en';
           els.subtitle.textContent = "Acts 17:24-27";
@@ -499,6 +458,7 @@
           els.passageJer.textContent = `“${JER_EN}”`;
           els.twTitle.textContent = "The Word";
           els.twText.textContent = "Free offline Bible in 16 languages. Reading, search, notes and studies.";
+          els.navYoutube.textContent = "YouTube";
         }
       }
 
