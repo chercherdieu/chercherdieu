@@ -3,41 +3,50 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ChercherDieu.com — Accueil</title>
-  <meta name="description" content="Chercher Dieu et sa Parole — Actes 17 : Il n'est pas loin de chacun de nous." />
+  <title>ChercherDieu.com</title>
+
+  <meta name="description" content="Chercher Dieu et sa Parole — Actes 17:24-27." />
   <link rel="canonical" href="https://chercherdieu.com/" />
+
   <meta property="og:title" content="Chercher Dieu" />
-  <meta property="og:description" content="Actes 17 — Il n'est pas loin de chacun de nous." />
+  <meta property="og:description" content="Actes 17:24-27 — Il n'est pas loin de chacun de nous." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://chercherdieu.com/" />
-  <meta name="theme-color" content="#1e40af" />
+
+  <meta name="theme-color" content="#0b1224" />
 
   <style>
     :root{
-      /* Palette "TheWord-ish" */
-      --bg-top:#0ea5e9;       /* sky-500 */
-      --bg-mid:#2563eb;       /* blue-600 */
-      --bg-deep:#0b1224;      /* deep navy */
-      --glass:#0b12248a;      /* glass card */
-      --glass-2:#0b12246a;
-      --brd:#ffffff1f;
-      --brd-2:#ffffff2c;
+      /* Dark / TheWord-like */
+      --bg0:#050914;
+      --bg1:#070d1f;
+      --bg2:#0b1224;
+
+      --card:#0b1224cc;
+      --card2:#0b1224aa;
+
+      --brd:#ffffff14;
+      --brd2:#ffffff22;
+
       --text:#eef5ff;
-      --muted:#c7d2fe;
-      --muted2:#a5b4fc;
+      --muted:#b7c6ff;
+      --muted2:#9fb0ff;
 
-      --btn:#ffffff12;
-      --btnHover:#ffffff1b;
-      --btnActive:#ffffff22;
+      --blue:#60a5fa;
+      --cyan:#22d3ee;
 
-      --shadow: 0 18px 60px rgba(0,0,0,.55);
-      --shadowSoft: 0 10px 28px rgba(0,0,0,.35);
+      --btn:#ffffff10;
+      --btn2:#ffffff16;
+      --btnBrd:#ffffff22;
 
-      --radius:28px;
-      --radius2:18px;
-      --radius3:14px;
+      --shadow: 0 18px 70px rgba(0,0,0,.62);
+      --shadowSoft: 0 10px 26px rgba(0,0,0,.42);
 
-      --focus: 0 0 0 3px rgba(147, 197, 253, .35);
+      --r1:28px;
+      --r2:18px;
+      --r3:14px;
+
+      --focus: 0 0 0 3px rgba(96,165,250,.30);
     }
 
     *{box-sizing:border-box}
@@ -47,31 +56,30 @@
       color:var(--text);
       font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Inter, Arial;
       background:
-        radial-gradient(1100px 700px at 15% -10%, rgba(191,219,254,.18) 0%, transparent 55%),
-        radial-gradient(900px 650px at 110% 115%, rgba(147,197,253,.16) 0%, transparent 52%),
-        linear-gradient(135deg, var(--bg-top), var(--bg-mid));
+        radial-gradient(900px 520px at 12% -8%, rgba(96,165,250,.16) 0%, transparent 60%),
+        radial-gradient(760px 540px at 110% 115%, rgba(34,211,238,.12) 0%, transparent 58%),
+        linear-gradient(180deg, var(--bg0), var(--bg1) 35%, var(--bg2));
       background-attachment: fixed;
       overflow-x:hidden;
     }
 
-    /* Petits blobs lumineux (discrets) */
+    /* Soft glow blobs */
     .blob{
       position:fixed;
-      inset:auto;
-      width:520px;height:520px;
-      filter: blur(42px);
-      opacity:.16;
+      width:540px;height:540px;
+      filter: blur(44px);
+      opacity:.12;
       pointer-events:none;
-      transform: translate3d(0,0,0);
       z-index:0;
+      transform: translate3d(0,0,0);
     }
     .blob.b1{
-      left:-180px; top:-180px;
-      background: radial-gradient(circle at 30% 30%, rgba(34,211,238,.95), transparent 60%);
+      left:-220px; top:-240px;
+      background: radial-gradient(circle at 30% 30%, rgba(96,165,250,.95), transparent 62%);
     }
     .blob.b2{
-      right:-220px; bottom:-260px;
-      background: radial-gradient(circle at 70% 60%, rgba(96,165,250,.95), transparent 60%);
+      right:-260px; bottom:-280px;
+      background: radial-gradient(circle at 60% 55%, rgba(34,211,238,.95), transparent 62%);
     }
 
     .wrap{
@@ -85,180 +93,156 @@
 
     .card{
       width:100%;
-      max-width:1020px;
-      background: linear-gradient(180deg, var(--glass), var(--glass-2));
+      max-width:1040px;
+      border-radius: var(--r1);
+      background: linear-gradient(180deg, var(--card), var(--card2));
       border:1px solid var(--brd);
-      border-radius: var(--radius);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       box-shadow: var(--shadow);
       padding: 22px;
     }
 
-    /* Header */
     header{
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:14px;
       flex-wrap:wrap;
-      padding: 4px 4px 8px;
+      padding: 4px 4px 10px;
     }
 
     .brand{
       display:flex;
       align-items:center;
       gap:14px;
-      min-width: 240px;
+      min-width: 260px;
     }
 
     .logo{
       width:46px;height:46px;
       border-radius:16px;
-      border:1px solid var(--brd-2);
+      border:1px solid var(--brd2);
       background: conic-gradient(from 220deg, #60a5fa, #38bdf8, #22d3ee, #60a5fa);
       box-shadow:
-        inset 0 0 18px rgba(255,255,255,.28),
-        0 10px 24px rgba(59,130,246,.30);
+        inset 0 0 18px rgba(255,255,255,.22),
+        0 10px 24px rgba(96,165,250,.20);
     }
 
-    .title{
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-      line-height:1.1;
-    }
-
+    .title{display:flex;flex-direction:column;gap:6px;line-height:1.1}
     h1{
       margin:0;
       font-size: clamp(24px, 3.6vw, 40px);
-      font-weight: 900;
+      font-weight: 950;
       letter-spacing: .35px;
     }
+    .sub{
+      margin:0;
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing:.15px;
+    }
 
-    .tagline{
+    .topLinks{
       display:flex;
-      align-items:center;
       gap:10px;
       flex-wrap:wrap;
-      font-size: 13.5px;
-      color: var(--muted);
+      align-items:center;
     }
 
-    .pill{
+    a.btn{
       display:inline-flex;
       align-items:center;
-      gap:8px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border:1px solid var(--brd);
-      background: rgba(255,255,255,.08);
+      gap:10px;
+      text-decoration:none;
       color: var(--text);
-      font-weight: 800;
-      letter-spacing:.15px;
+      font-weight: 950;
+      letter-spacing:.2px;
+      padding: 11px 14px;
+      border-radius: 16px;
+      border:1px solid var(--btnBrd);
+      background: linear-gradient(180deg, var(--btn2), var(--btn));
       box-shadow: var(--shadowSoft);
-      user-select:none;
+      transition: transform .08s ease, background .2s ease, border-color .2s ease;
       white-space:nowrap;
     }
-    .dot{
-      width:8px;height:8px;
-      border-radius:50%;
-      background: rgba(34,211,238,.95);
-      box-shadow: 0 0 0 4px rgba(34,211,238,.12);
+    a.btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.30);
+      background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.10));
+    }
+    a.btn:focus-visible{ outline:none; box-shadow: var(--focus); }
+
+    a.btn.primary{
+      border-color: rgba(96,165,250,.40);
+      background: linear-gradient(180deg, rgba(96,165,250,.22), rgba(255,255,255,.08));
+    }
+    a.btn.primary:hover{
+      border-color: rgba(96,165,250,.55);
+      background: linear-gradient(180deg, rgba(96,165,250,.26), rgba(255,255,255,.10));
     }
 
-    /* Lang switch (style app) */
-    .lang{
-      display:flex;
-      gap:8px;
-      align-items:center;
-      padding:6px;
-      border-radius: 999px;
-      border:1px solid var(--brd);
-      background: rgba(255,255,255,.07);
+    main{
+      margin-top: 6px;
+      padding: 6px 4px 4px;
     }
 
-    .btn{
-      border:1px solid transparent;
-      background: transparent;
-      color: var(--text);
-      padding: 9px 12px;
-      border-radius: 999px;
-      cursor:pointer;
-      font-weight: 900;
-      letter-spacing:.2px;
-      transition: transform .08s ease, background .2s ease, border-color .2s ease;
-    }
-    .btn:hover{ background: rgba(255,255,255,.08); transform: translateY(-1px); }
-    .btn.active{
-      background: rgba(255,255,255,.16);
-      border-color: rgba(255,255,255,.22);
-    }
-    .btn:focus-visible{ outline:none; box-shadow: var(--focus); }
-
-    /* Main */
-    main{ margin-top: 10px; padding: 8px 4px 4px; }
-
-    .hero{
+    .layout{
       display:grid;
       grid-template-columns: 1.25fr .75fr;
-      gap:16px;
-      align-items:stretch;
+      gap: 16px;
+      align-items: start;
     }
-    @media (max-width: 860px){
-      .hero{ grid-template-columns: 1fr; }
+    @media (max-width: 900px){
+      .layout{ grid-template-columns: 1fr; }
     }
 
     .panel{
       border:1px solid var(--brd);
-      background: rgba(255,255,255,.06);
-      border-radius: var(--radius2);
-      padding: 16px 16px 14px;
+      background: rgba(255,255,255,.04);
+      border-radius: var(--r2);
+      padding: 16px;
       box-shadow: var(--shadowSoft);
     }
 
-    .panelHeader{
+    .panelHead{
       display:flex;
       align-items:flex-start;
       justify-content:space-between;
-      gap:14px;
-      margin-bottom: 10px;
+      gap:12px;
+      margin-bottom: 8px;
     }
 
     .ref{
+      margin:0;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
       color: var(--muted2);
-      font-weight: 800;
+      font-weight: 950;
       letter-spacing:.2px;
       font-size: 13px;
-      margin: 0;
-      display:flex;
-      align-items:center;
-      gap:8px;
       user-select:none;
-      white-space:nowrap;
     }
 
-    .refBadge{
+    .badge{
       display:inline-flex;
       align-items:center;
       justify-content:center;
       padding: 6px 10px;
       border-radius: 999px;
-      background: rgba(255,255,255,.08);
       border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
       color: var(--text);
-      font-weight: 900;
+      font-weight: 950;
     }
 
-    .passage{
-      padding-top: 2px;
-    }
-
+    .passage{ padding-top: 4px; }
     blockquote{ margin:0; }
 
     .vline{
       margin: 10px 0;
-      line-height: 1.75;
+      line-height: 1.78;
       font-size: 18px;
       letter-spacing: .1px;
     }
@@ -272,72 +256,31 @@
       text-align:right;
       margin-right:.45em;
       font-variant-numeric: tabular-nums;
-      opacity:.8;
-      font-weight:900;
-      color: rgba(255,255,255,.85);
+      opacity:.82;
+      font-weight: 950;
+      color: rgba(255,255,255,.86);
     }
 
     .divider{
       height:1px;
-      background: rgba(255,255,255,.12);
-      margin: 14px 0 10px;
+      background: rgba(255,255,255,.10);
+      margin: 12px 0 12px;
     }
 
-    /* Side panel (cta) */
-    .sideTop{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
+    .stack{ display:flex; flex-direction:column; gap:12px; }
+
     .sideTitle{
-      margin:0;
+      margin:0 0 6px;
       font-weight: 950;
-      font-size: 16px;
-      letter-spacing:.2px;
+      font-size: 15px;
+      letter-spacing:.15px;
+      color: rgba(255,255,255,.92);
     }
     .sideText{
       margin:0;
       color: var(--muted);
       font-size: 14px;
-      line-height: 1.5;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:10px;
-      margin-top: 12px;
-    }
-
-    a.cta{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      text-decoration:none;
-
-      border:1px solid rgba(255,255,255,.22);
-      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
-      color: var(--text);
-
-      padding: 12px 14px;
-      border-radius: 16px;
-
-      font-weight: 950;
-      letter-spacing:.2px;
-      transition: transform .08s ease, background .2s ease, border-color .2s ease;
-    }
-    a.cta:hover{
-      transform: translateY(-1px);
-      border-color: rgba(255,255,255,.32);
-      background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.07));
-    }
-    a.cta:focus-visible{ outline:none; box-shadow: var(--focus); }
-
-    .rightIcon{
-      opacity:.9;
-      font-weight:900;
-      transform: translateY(-.5px);
+      line-height: 1.55;
     }
 
     .mini{
@@ -347,24 +290,23 @@
       gap:10px;
       padding: 10px 12px;
       border-radius: 16px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
       color: var(--muted);
       font-size: 13.5px;
     }
 
     .email{
       color: var(--text);
-      font-weight: 900;
+      font-weight: 950;
       text-decoration:none;
     }
     .email:hover{ text-decoration: underline; }
 
-    /* Footer */
     footer{
       margin-top: 16px;
       padding: 14px 6px 2px;
-      border-top:1px solid rgba(255,255,255,.12);
+      border-top:1px solid rgba(255,255,255,.10);
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -374,20 +316,8 @@
       font-size: 13.5px;
     }
 
-    .quote{
-      display:flex;
-      gap:8px;
-      align-items:center;
-      font-weight: 800;
-      color: rgba(255,255,255,.80);
-    }
-    .quoteMark{
-      opacity:.9;
-      font-size: 16px;
-    }
     .small{ font-size:12px; opacity:.9; }
 
-    /* Reduced motion */
     @media (prefers-reduced-motion: reduce){
       *{ transition:none !important; }
       .blob{ display:none; }
@@ -400,79 +330,76 @@
   <div class="blob b2" aria-hidden="true"></div>
 
   <div class="wrap">
-    <div class="card" role="region" aria-label="Accueil Chercher Dieu">
-
+    <div class="card" role="region" aria-label="Chercher Dieu">
       <header>
         <div class="brand">
           <div class="logo" aria-hidden="true"></div>
           <div class="title">
-            <h1>Chercher Dieu</h1>
-            <div class="tagline" id="tagline">
-              <span class="pill"><span class="dot" aria-hidden="true"></span><span id="pillText">En construction</span></span>
-              <span id="subtitle">Actes 17 — Chercher et trouver Dieu.</span>
-            </div>
+            <h1 id="siteTitle">Chercher Dieu</h1>
+            <p class="sub" id="subtitle">Actes 17:24-27</p>
           </div>
         </div>
 
-        <div class="lang" aria-label="Changer de langue">
-          <button class="btn" id="btn-fr" type="button">Français</button>
-          <button class="btn" id="btn-en" type="button">English</button>
+        <div class="topLinks" aria-label="Liens">
+          <a class="btn primary" id="btnYoutube" href="https://youtube.com/@chercherdieu?si=5hk5jDcWrvlgVpFT" target="_blank" rel="noopener">
+            ▶️ YouTube
+          </a>
+          <a class="btn" id="btnWord" href="https://www.theword.fr" target="_blank" rel="noopener">
+            📖 theword.fr
+          </a>
         </div>
       </header>
 
       <main>
-        <section class="hero" aria-label="Passage et liens">
-          <!-- Passage -->
+        <section class="layout" aria-label="Versets et ressources">
+          <!-- Colonne gauche : Actes 17 -->
           <div class="panel">
-            <div class="panelHeader">
-              <p class="ref" id="ref">
-                <span class="refBadge">Actes 17:24–27</span>
+            <div class="panelHead">
+              <p class="ref" id="refActs">
+                <span class="badge" id="badgeActs">Actes 17:24-27</span>
               </p>
-              <span class="pill" style="opacity:.92;">
-                ✨ <span id="hint">Une invitation à chercher Dieu</span>
-              </span>
             </div>
 
-            <div class="passage" id="passage">
-              <!-- Injecté par JS -->
-            </div>
-
-            <div class="divider" role="separator" aria-hidden="true"></div>
-
-            <p class="sideText" id="coming" style="margin:0;">
-              Un site pour faire connaître Dieu et sa Parole — en construction…
-            </p>
+            <div class="passage" id="passageActs"></div>
           </div>
 
-          <!-- Side CTA -->
-          <aside class="panel" aria-label="Liens">
-            <div class="sideTop">
-              <p class="sideTitle" id="sideTitle">Aller plus loin</p>
-              <p class="sideText" id="sideText">
-                Lire la Bible facilement (hors ligne) et garder des notes avec l’application TheWord.
+          <!-- Colonne droite : Ressources + Jérémie 23 -->
+          <aside class="stack">
+            <div class="panel">
+              <p class="sideTitle" id="resourcesTitle">Ressources</p>
+              <p class="sideText" id="resourcesText">
+                Chaîne YouTube : cours bibliques et enseignements.
               </p>
+
+              <div class="divider" role="separator" aria-hidden="true"></div>
+
+              <div class="stack">
+                <a class="btn primary" href="https://youtube.com/@chercherdieu?si=5hk5jDcWrvlgVpFT" target="_blank" rel="noopener">
+                  ▶️ Accéder à la chaîne
+                </a>
+
+                <div class="mini">
+                  <span id="contactLabel">Contact</span>
+                  <a class="email" href="mailto:contact@chercherdieu.com">contact@chercherdieu.com</a>
+                </div>
+              </div>
             </div>
 
-            <div class="grid">
-              <a class="cta" id="cta-word" href="https://www.theword.fr" target="_blank" rel="noopener">
-                <span id="ctaText">Ouvrir theword.fr</span>
-                <span class="rightIcon">→</span>
-              </a>
-
-              <div class="mini">
-                <span id="mailLabel">Contact</span>
-                <a class="email" href="mailto:contact@chercherdieu.com">contact@chercherdieu.com</a>
+            <div class="panel">
+              <div class="panelHead">
+                <p class="ref" id="refJer">
+                  <span class="badge" id="badgeJer">Jérémie 23:29</span>
+                </p>
               </div>
+
+              <div class="passage" id="passageJer"></div>
             </div>
           </aside>
         </section>
       </main>
 
       <footer>
-        <div class="quote" id="foot">
-          <span class="quoteMark" aria-hidden="true">“</span>
-          <span>Il n'est pas loin de chacun de nous.</span>
-        </div>
+        <div id="footText">« Il n'est pas loin de chacun de nous. »</div>
         <div class="small">© <span id="year"></span> chercherdieu.com</div>
       </footer>
     </div>
@@ -480,42 +407,43 @@
 
   <script>
     (function(){
-      // Actes 17:24–27
-      const PASSAGE_FR = [
-        { n: 24, t: "Le Dieu qui a fait le monde et tout ce qui s'y trouve, étant le Seigneur du ciel et de la terre, n'habite point dans des temples faits de main d'homme;" },
-        { n: 25, t: "Il n'est point servi par des mains humaines, comme s'il avait besoin de quelque chose, lui qui donne à tous la vie, la respiration et toutes choses;" },
-        { n: 26, t: "Il a fait que tous les hommes, sortis d'un seul, habitent sur toute la surface de la terre, ayant déterminé la durée des temps et les bornes de leur demeure;" },
-        { n: 27, t: "afin qu'ils cherchent le Seigneur, et qu'ils s'efforcent de le trouver en tâtonnant, bien qu'il ne soit pas loin de chacun de nous;" }
+      /* FR (ta version TheWord) */
+      const ACTS_FR = [
+        { n: 24, t: "Le Dieu qui a fait le monde et tout ce qui s’y trouve, étant le Seigneur du ciel et de la terre, n’habite point dans des temples faits de main d’homme;" },
+        { n: 25, t: "il n’est point servi par des mains humaines, comme s’il avait besoin de quoi que ce soit, lui qui donne à tous la vie, la respiration, et toutes choses." },
+        { n: 26, t: "Il a fait que tous les hommes, sortis d’un seul sang, habitent sur toute la surface de la terre, ayant déterminé la durée des temps et les bornes de leur demeure;" },
+        { n: 27, t: "il a voulu qu’ils cherchent le Seigneur, et qu’ils s’efforcent de le trouver en tâtonnant, bien qu’il ne soit pas loin de chacun de nous" }
       ];
 
-      // Acts 17:24–27 (KJV)
-      const PASSAGE_EN = [
+      const JER_FR = [
+        { n: 29, t: "Ma parole n’est-elle pas comme un feu, dit l’Éternel, Et comme un marteau qui brise le roc?" }
+      ];
+
+      /* EN (public domain KJV) */
+      const ACTS_EN = [
         { n: 24, t: "God that made the world and all things therein, seeing that he is Lord of heaven and earth, dwelleth not in temples made with hands;" },
         { n: 25, t: "Neither is worshipped with men's hands, as though he needed any thing, seeing he giveth to all life, and breath, and all things;" },
         { n: 26, t: "And hath made of one blood all nations of men for to dwell on all the face of the earth, and hath determined the times before appointed, and the bounds of their habitation;" },
         { n: 27, t: "That they should seek the Lord, if haply they might feel after him, and find him, though he be not far from every one of us:" }
       ];
 
-      const els = {
-        passage: document.getElementById('passage'),
-        ref: document.getElementById('ref'),
-        foot: document.getElementById('foot'),
-        year: document.getElementById('year'),
-        btnFr: document.getElementById('btn-fr'),
-        btnEn: document.getElementById('btn-en'),
-        ctaText: document.getElementById('ctaText'),
-        subtitle: document.getElementById('subtitle'),
-        sideTitle: document.getElementById('sideTitle'),
-        sideText: document.getElementById('sideText'),
-        coming: document.getElementById('coming'),
-        pillText: document.getElementById('pillText'),
-        hint: document.getElementById('hint'),
-        mailLabel: document.getElementById('mailLabel'),
-      };
+      const JER_EN = [
+        { n: 29, t: "Is not my word like as a fire? saith the LORD; and like a hammer that breaketh the rock in pieces?" }
+      ];
 
-      const saved = localStorage.getItem('cd-lang');
-      const prefers = saved || ((navigator.language||'en').toLowerCase().startsWith('fr') ? 'fr' : 'en');
-      let lang = prefers;
+      const els = {
+        passageActs: document.getElementById('passageActs'),
+        passageJer: document.getElementById('passageJer'),
+        badgeActs: document.getElementById('badgeActs'),
+        badgeJer: document.getElementById('badgeJer'),
+        subtitle: document.getElementById('subtitle'),
+        resourcesTitle: document.getElementById('resourcesTitle'),
+        resourcesText: document.getElementById('resourcesText'),
+        contactLabel: document.getElementById('contactLabel'),
+        footText: document.getElementById('footText'),
+        year: document.getElementById('year'),
+        btnYoutube: document.getElementById('btnYoutube'),
+      };
 
       function linesHTML(lines){
         return '<blockquote>' + lines.map(v =>
@@ -523,55 +451,51 @@
         ).join('') + '</blockquote>';
       }
 
+      function isFrenchLocale(){
+        const lang = (navigator.language || 'en').toLowerCase();
+        return lang.startsWith('fr');
+      }
+
       function render(){
-        if(lang==='fr'){
-          els.passage.innerHTML = linesHTML(PASSAGE_FR);
-          els.ref.innerHTML = `<span class="refBadge">Actes 17:24–27</span>`;
+        const fr = isFrenchLocale();
+
+        if(fr){
           document.documentElement.lang = 'fr';
+          els.subtitle.textContent = "Actes 17:24-27";
 
-          els.btnFr.classList.add('active');
-          els.btnEn.classList.remove('active');
+          els.badgeActs.textContent = "Actes 17:24-27";
+          els.badgeJer.textContent = "Jérémie 23:29";
 
-          els.foot.innerHTML = `<span class="quoteMark" aria-hidden="true">“</span><span>Il n'est pas loin de chacun de nous.</span>`;
-          els.ctaText.textContent = "Ouvrir theword.fr";
-          els.subtitle.textContent = "Actes 17 — Chercher et trouver Dieu.";
-          els.sideTitle.textContent = "Aller plus loin";
-          els.sideText.textContent = "Lire la Bible facilement (hors ligne) et garder des notes avec l’application TheWord.";
-          els.coming.textContent = "Un site pour faire connaître Dieu et sa Parole — en construction…";
-          els.pillText.textContent = "En construction";
-          els.hint.textContent = "Une invitation à chercher Dieu";
-          els.mailLabel.textContent = "Contact";
+          els.passageActs.innerHTML = linesHTML(ACTS_FR);
+          els.passageJer.innerHTML = linesHTML(JER_FR);
+
+          els.resourcesTitle.textContent = "Ressources";
+          els.resourcesText.textContent = "Chaîne YouTube : cours bibliques et enseignements.";
+          els.contactLabel.textContent = "Contact";
+          els.footText.textContent = "« Il n'est pas loin de chacun de nous. »";
+
+          els.btnYoutube.textContent = "▶️ YouTube";
         }else{
-          els.passage.innerHTML = linesHTML(PASSAGE_EN);
-          els.ref.innerHTML = `<span class="refBadge">Acts 17:24–27</span>`;
           document.documentElement.lang = 'en';
+          els.subtitle.textContent = "Acts 17:24-27";
 
-          els.btnEn.classList.add('active');
-          els.btnFr.classList.remove('active');
+          els.badgeActs.textContent = "Acts 17:24-27";
+          els.badgeJer.textContent = "Jeremiah 23:29";
 
-          els.foot.innerHTML = `<span class="quoteMark" aria-hidden="true">“</span><span>He is not far from any one of us.</span>`;
-          els.ctaText.textContent = "Open theword.fr";
-          els.subtitle.textContent = "Acts 17 — Seek and find God.";
-          els.sideTitle.textContent = "Go further";
-          els.sideText.textContent = "Read the Bible easily (offline) and save your notes with TheWord app.";
-          els.coming.textContent = "A website to make God and His Word known — under construction…";
-          els.pillText.textContent = "Under construction";
-          els.hint.textContent = "An invitation to seek God";
-          els.mailLabel.textContent = "Contact";
+          els.passageActs.innerHTML = linesHTML(ACTS_EN);
+          els.passageJer.innerHTML = linesHTML(JER_EN);
+
+          els.resourcesTitle.textContent = "Resources";
+          els.resourcesText.textContent = "YouTube channel: Bible lessons and teachings.";
+          els.contactLabel.textContent = "Contact";
+          els.footText.textContent = "“He is not far from any one of us.”";
+
+          els.btnYoutube.textContent = "▶️ YouTube";
         }
       }
 
-      function setLang(L){
-        lang = L;
-        localStorage.setItem('cd-lang', lang);
-        render();
-      }
-
-      els.btnFr.addEventListener('click', ()=>setLang('fr'));
-      els.btnEn.addEventListener('click', ()=>setLang('en'));
-
       els.year.textContent = new Date().getFullYear();
-      setLang(prefers);
+      render();
     })();
   </script>
 </body>
