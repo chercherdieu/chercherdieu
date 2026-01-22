@@ -25,11 +25,8 @@
       --card2:#0b1224b8;
 
       --brd:#ffffff14;
-      --brd2:#ffffff22;
-
       --text:#eef5ff;
       --muted:#b7c6ff;
-      --muted2:#9fb0ff;
 
       --accent2:#60a5fa;
 
@@ -39,7 +36,6 @@
       --r1:28px;
       --r2:18px;
 
-      /* Bottom bar height (mobile friendly) */
       --bottomH: 76px;
 
       /* YouTube red (logo only) */
@@ -58,12 +54,7 @@
         radial-gradient(760px 540px at 110% 115%, rgba(34,211,238,.12) 0%, transparent 58%),
         linear-gradient(180deg, var(--bg0), var(--bg1) 35%, var(--bg2));
       background-attachment: fixed;
-      overflow:hidden; /* ✅ page "app" */
-    }
-
-    /* iOS/Android safe-area */
-    .safe-bottom{
-      height: env(safe-area-inset-bottom);
+      overflow:hidden; /* ✅ app style */
     }
 
     .blob{
@@ -73,7 +64,6 @@
       opacity:.11;
       pointer-events:none;
       z-index:0;
-      transform: translate3d(0,0,0);
     }
     .blob.b1{
       left:-220px; top:-240px;
@@ -84,7 +74,7 @@
       background: radial-gradient(circle at 60% 55%, rgba(34,211,238,.95), transparent 62%);
     }
 
-    /* ✅ Use dynamic viewport on mobile */
+    /* ✅ dynamic viewport */
     .wrap{
       position:relative;
       z-index:1;
@@ -155,14 +145,13 @@
       min-height: 0;
     }
 
-    /* ✅ Verse block: inner scroll on small screens */
+    /* ✅ Acts block with internal scroll */
     .verseCard{
       flex: 1 1 auto;
       display:flex;
       flex-direction:column;
       align-items:center;
       text-align:center;
-      padding: 14px;
       min-height: 0;
     }
 
@@ -171,7 +160,7 @@
       max-width: 920px;
       flex: 1 1 auto;
       min-height: 0;
-      overflow:auto;                 /* ✅ scroll inside only */
+      overflow:auto;
       -webkit-overflow-scrolling: touch;
       padding: 6px 4px 10px;
     }
@@ -210,7 +199,6 @@
       border-radius: var(--r2);
       padding: 12px;
       box-shadow: var(--shadowSoft);
-      min-height: 0;
       display:flex;
       flex-direction:column;
       gap:8px;
@@ -236,33 +224,31 @@
       color: rgba(238,245,255,.92);
     }
 
-    /* ✅ Mobile tuning */
-    @media (max-width: 520px){
-      .sub{ display:none; }
-
-      .vline{
-        font-size: 16px;
-        margin: 8px 0;
-        line-height: 1.65;
-      }
-
-      .below{
-        grid-template-columns: 1fr;
-        gap:10px;
-      }
-
-      .miniText{
-        font-size: 13px;
-      }
+    /* ✅ TheWord button inside card (mobile) */
+    .twActionRow{
+      display:none; /* shown on mobile */
+      padding-top: 4px;
     }
-
-    @media (max-height: 780px){
-      .vline{
-        font-size: 15.5px;
-        margin: 7px 0;
-      }
-      .ref{ margin-top: 8px; }
-      .miniCard{ padding: 10px; }
+    .twBtn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      text-decoration:none;
+      color: var(--text);
+      font-weight: 950;
+      letter-spacing:.15px;
+      border-radius: 14px;
+      padding: 10px 12px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      transition: transform .08s ease, background .2s ease, border-color .2s ease;
+      width: fit-content;
+    }
+    .twBtn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.09);
+      border-color: rgba(255,255,255,.20);
     }
 
     /* Bottom bar */
@@ -308,17 +294,13 @@
       transition: transform .08s ease, background .2s ease, border-color .2s ease;
       white-space:nowrap;
       min-height: 46px;
-      min-width: 0; /* ✅ allow ellipsis */
+      min-width: 0;
     }
 
     .navItem:hover{
       transform: translateY(-1px);
       background: rgba(255,255,255,.07);
       border-color: rgba(255,255,255,.12);
-    }
-
-    .navItem.youtube{
-      flex: 1.18;
     }
 
     .icon{ width:20px;height:20px; display:inline-block; }
@@ -331,29 +313,58 @@
       max-width: 100%;
     }
 
-    /* ✅ Contact email ellipsis only on very small widths */
-    @media (max-width: 420px){
-      .label.contact{
-        max-width: 120px;
-      }
-    }
-
-    /* YouTube center brand (bigger) */
+    /* YouTube center */
     .ytWrap{
       display:flex;
       align-items:center;
       justify-content:center;
-      gap:12px;
+      gap:10px;
     }
     .ytIcon{
-      width:34px;
-      height:24px;
+      width:28px; /* 🔧 adjusted smaller for mobile readability */
+      height:20px;
       display:block;
     }
     .ytText{
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 950;
       letter-spacing:.1px;
+    }
+
+    /* Desktop keeps 3 buttons, Mobile uses 2 buttons (YT + Contact) */
+    .navDesktop{ display:flex; gap:10px; width:100%; }
+    .navMobile{ display:none; gap:10px; width:100%; }
+
+    /* ✅ Mobile layout tuning */
+    @media (max-width: 520px){
+      .sub{ display:none; }
+
+      .vline{
+        font-size: 16px;
+        margin: 8px 0;
+        line-height: 1.65;
+      }
+
+      .below{
+        grid-template-columns: 1fr;
+        gap:10px;
+      }
+
+      /* ✅ Show TheWord button in the card for mobile */
+      .twActionRow{ display:block; }
+
+      /* ✅ Hide Jeremiah card on mobile to avoid clutter */
+      .miniCard.jerCard{ display:none; }
+
+      /* ✅ Switch bottom bar to only 2 buttons (YouTube + Contact) */
+      .navDesktop{ display:none; }
+      .navMobile{ display:flex; }
+    }
+
+    @media (max-height: 780px){
+      .vline{ font-size: 15.5px; margin: 7px 0; }
+      .ref{ margin-top: 8px; }
+      .miniCard{ padding: 10px; }
     }
   </style>
 </head>
@@ -373,7 +384,6 @@
 
       <main>
         <section class="card verseCard" aria-label="Passage principal">
-          <!-- ✅ Inner scroll zone -->
           <div class="passageScroll" id="passageActs"></div>
           <div class="ref" id="refActs">Actes 17:24-27</div>
         </section>
@@ -384,9 +394,16 @@
             <p class="miniText" id="twText">
               Bible gratuite 100% hors ligne en 16 langues. Lecture, recherche, notes et études.
             </p>
+
+            <!-- ✅ Mobile only: bouton TheWord ici pour le voir en entier -->
+            <div class="twActionRow">
+              <a class="twBtn" href="https://www.theword.fr" target="_blank" rel="noopener" aria-label="TheWord">
+                TheWord
+              </a>
+            </div>
           </div>
 
-          <div class="miniCard">
+          <div class="miniCard jerCard">
             <p class="miniTitle" id="jerTitle">Jérémie 23:29</p>
             <p class="miniText jer" id="passageJer"></p>
           </div>
@@ -397,37 +414,59 @@
 
   <nav class="bottomBar" aria-label="Navigation">
     <div class="bottomInner">
-      <!-- Gauche : TheWord -->
-      <a class="navItem" href="https://www.theword.fr" target="_blank" rel="noopener" aria-label="TheWord">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none">
-          <path d="M7 4.5h9.2c1.5 0 2.8 1.2 2.8 2.8v12.2c0 .6-.5 1.1-1.1 1.1H8.2c-1.6 0-3.2-.7-3.2-2.6V6.6c0-1.3.9-2.1 2-2.1Z" stroke="rgba(255,255,255,.65)" stroke-width="1.4"/>
-          <path d="M8 7h9" stroke="rgba(255,255,255,.42)" stroke-width="1.4" stroke-linecap="round"/>
-          <path d="M8 10h7" stroke="rgba(255,255,255,.42)" stroke-width="1.4" stroke-linecap="round"/>
-        </svg>
-        <span class="label" id="navWord">TheWord</span>
-      </a>
 
-      <!-- Milieu : YouTube -->
-      <a class="navItem youtube" href="https://youtube.com/@chercherdieu?si=5hk5jDcWrvlgVpFT" target="_blank" rel="noopener" aria-label="YouTube ChercherDieu">
-        <span class="ytWrap">
-          <svg class="ytIcon" viewBox="0 0 32 24" aria-hidden="true">
-            <rect x="0" y="2" width="32" height="20" rx="6" fill="var(--yt)"></rect>
-            <polygon points="13,7.5 13,16.5 21,12" fill="#ffffff"></polygon>
+      <!-- ✅ Desktop: TheWord / YouTube / Contact -->
+      <div class="navDesktop" aria-hidden="false">
+        <a class="navItem" href="https://www.theword.fr" target="_blank" rel="noopener" aria-label="TheWord">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none">
+            <path d="M7 4.5h9.2c1.5 0 2.8 1.2 2.8 2.8v12.2c0 .6-.5 1.1-1.1 1.1H8.2c-1.6 0-3.2-.7-3.2-2.6V6.6c0-1.3.9-2.1 2-2.1Z" stroke="rgba(255,255,255,.65)" stroke-width="1.4"/>
+            <path d="M8 7h9" stroke="rgba(255,255,255,.42)" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M8 10h7" stroke="rgba(255,255,255,.42)" stroke-width="1.4" stroke-linecap="round"/>
           </svg>
-          <span class="ytText" id="navYoutube">YouTube</span>
-        </span>
-      </a>
+          <span class="label">TheWord</span>
+        </a>
 
-      <!-- Droite : Contact -->
-      <a class="navItem" href="mailto:contact@chercherdieu.com" aria-label="Contact email">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none">
-          <path d="M5.2 7.4h13.6c.9 0 1.6.7 1.6 1.6v8.6c0 .9-.7 1.6-1.6 1.6H5.2c-.9 0-1.6-.7-1.6-1.6V9c0-.9.7-1.6 1.6-1.6Z" stroke="rgba(255,255,255,.65)" stroke-width="1.4"/>
-          <path d="M6 9l6 4.6L18 9" stroke="rgba(255,255,255,.48)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span class="label contact" id="navContact">contact@chercherdieu.com</span>
-      </a>
+        <a class="navItem" href="https://youtube.com/@chercherdieu?si=5hk5jDcWrvlgVpFT" target="_blank" rel="noopener" aria-label="YouTube ChercherDieu">
+          <span class="ytWrap">
+            <svg class="ytIcon" viewBox="0 0 32 24" aria-hidden="true">
+              <rect x="0" y="2" width="32" height="20" rx="6" fill="var(--yt)"></rect>
+              <polygon points="13,7.5 13,16.5 21,12" fill="#ffffff"></polygon>
+            </svg>
+            <span class="ytText">YouTube</span>
+          </span>
+        </a>
+
+        <a class="navItem" href="mailto:contact@chercherdieu.com" aria-label="Contact email">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none">
+            <path d="M5.2 7.4h13.6c.9 0 1.6.7 1.6 1.6v8.6c0 .9-.7 1.6-1.6 1.6H5.2c-.9 0-1.6-.7-1.6-1.6V9c0-.9.7-1.6 1.6-1.6Z" stroke="rgba(255,255,255,.65)" stroke-width="1.4"/>
+            <path d="M6 9l6 4.6L18 9" stroke="rgba(255,255,255,.48)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="label">contact@chercherdieu.com</span>
+        </a>
+      </div>
+
+      <!-- ✅ Mobile: seulement YouTube + Contact -->
+      <div class="navMobile" aria-hidden="false">
+        <a class="navItem" href="https://youtube.com/@chercherdieu?si=5hk5jDcWrvlgVpFT" target="_blank" rel="noopener" aria-label="YouTube ChercherDieu">
+          <span class="ytWrap">
+            <svg class="ytIcon" viewBox="0 0 32 24" aria-hidden="true">
+              <rect x="0" y="2" width="32" height="20" rx="6" fill="var(--yt)"></rect>
+              <polygon points="13,7.5 13,16.5 21,12" fill="#ffffff"></polygon>
+            </svg>
+            <span class="ytText">YouTube</span>
+          </span>
+        </a>
+
+        <a class="navItem" href="mailto:contact@chercherdieu.com" aria-label="Contact email">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none">
+            <path d="M5.2 7.4h13.6c.9 0 1.6.7 1.6 1.6v8.6c0 .9-.7 1.6-1.6 1.6H5.2c-.9 0-1.6-.7-1.6-1.6V9c0-.9.7-1.6 1.6-1.6Z" stroke="rgba(255,255,255,.65)" stroke-width="1.4"/>
+            <path d="M6 9l6 4.6L18 9" stroke="rgba(255,255,255,.48)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="label">contact@chercherdieu.com</span>
+        </a>
+      </div>
+
     </div>
-    <div class="safe-bottom" aria-hidden="true"></div>
   </nav>
 
   <script>
@@ -459,9 +498,7 @@
       };
 
       function linesHTML(lines){
-        return '<blockquote>' + lines.map(v =>
-          `<p class="vline">${v.t}</p>`
-        ).join('') + '</blockquote>';
+        return '<blockquote>' + lines.map(v => `<p class="vline">${v.t}</p>`).join('') + '</blockquote>';
       }
 
       function isFrenchLocale(){
