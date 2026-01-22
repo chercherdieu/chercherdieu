@@ -31,7 +31,6 @@
       --muted:#b7c6ff;
       --muted2:#9fb0ff;
 
-      --accent:#3b82f6;
       --accent2:#60a5fa;
 
       --shadow: 0 18px 70px rgba(0,0,0,.62);
@@ -40,9 +39,8 @@
       --r1:28px;
       --r2:18px;
 
-      --focus: 0 0 0 3px rgba(96,165,250,.30);
-
-      --bottomH: 72px;
+      /* Bottom bar height (mobile friendly) */
+      --bottomH: 76px;
 
       /* YouTube red (logo only) */
       --yt:#FF0033;
@@ -50,6 +48,7 @@
 
     *{box-sizing:border-box}
     html,body{height:100%}
+
     body{
       margin:0;
       color:var(--text);
@@ -59,7 +58,12 @@
         radial-gradient(760px 540px at 110% 115%, rgba(34,211,238,.12) 0%, transparent 58%),
         linear-gradient(180deg, var(--bg0), var(--bg1) 35%, var(--bg2));
       background-attachment: fixed;
-      overflow:hidden; /* ✅ pas de scroll global */
+      overflow:hidden; /* ✅ page "app" */
+    }
+
+    /* iOS/Android safe-area */
+    .safe-bottom{
+      height: env(safe-area-inset-bottom);
     }
 
     .blob{
@@ -80,19 +84,20 @@
       background: radial-gradient(circle at 60% 55%, rgba(34,211,238,.95), transparent 62%);
     }
 
+    /* ✅ Use dynamic viewport on mobile */
     .wrap{
       position:relative;
       z-index:1;
-      height:100vh;
+      height: 100dvh;
       display:flex;
       justify-content:center;
-      padding: 14px 16px calc(var(--bottomH) + 14px);
+      padding: 12px 14px calc(var(--bottomH) + 12px + env(safe-area-inset-bottom));
     }
 
     .container{
       width:100%;
       max-width:1100px;
-      height: calc(100vh - var(--bottomH) - 28px);
+      height: calc(100dvh - var(--bottomH) - 24px - env(safe-area-inset-bottom));
       display:flex;
       flex-direction:column;
       gap: 10px;
@@ -117,7 +122,7 @@
 
     h1{
       margin:0;
-      font-size: clamp(26px, 3.6vw, 44px);
+      font-size: clamp(26px, 4vw, 44px);
       font-weight: 950;
       letter-spacing: .35px;
       text-shadow: 0 2px 0 rgba(0,0,0,.35);
@@ -150,40 +155,45 @@
       min-height: 0;
     }
 
+    /* ✅ Verse block: inner scroll on small screens */
     .verseCard{
       flex: 1 1 auto;
       display:flex;
       flex-direction:column;
-      justify-content:center;
       align-items:center;
       text-align:center;
-      padding: clamp(12px, 2.2vh, 18px);
+      padding: 14px;
       min-height: 0;
     }
 
-    .passage{
+    .passageScroll{
       width:100%;
       max-width: 920px;
-      margin: 0 auto;
-      min-height:0;
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow:auto;                 /* ✅ scroll inside only */
+      -webkit-overflow-scrolling: touch;
+      padding: 6px 4px 10px;
     }
 
     blockquote{ margin:0; padding:0; }
 
     .vline{
-      margin: clamp(6px, 1.1vh, 10px) 0;
-      line-height: 1.65;
-      font-size: clamp(15px, 1.05vw + 7px, 18px);
+      margin: 10px 0;
+      line-height: 1.7;
+      font-size: 17px;
       letter-spacing: .10px;
       color: rgba(238,245,255,.96);
     }
 
     .ref{
-      margin-top: clamp(8px, 1.2vh, 12px);
+      flex: 0 0 auto;
+      margin-top: 10px;
       font-weight: 950;
       color: var(--accent2);
       letter-spacing:.2px;
       font-size: 13px;
+      text-align:center;
     }
 
     .below{
@@ -226,23 +236,42 @@
       color: rgba(238,245,255,.92);
     }
 
-    @media (max-height: 720px){
-      .below{ gap:8px; }
-      .miniCard{ padding: 10px; gap:6px; }
-      .miniText{ font-size: 13px; }
+    /* ✅ Mobile tuning */
+    @media (max-width: 520px){
       .sub{ display:none; }
+
+      .vline{
+        font-size: 16px;
+        margin: 8px 0;
+        line-height: 1.65;
+      }
+
+      .below{
+        grid-template-columns: 1fr;
+        gap:10px;
+      }
+
+      .miniText{
+        font-size: 13px;
+      }
     }
 
-    @media (max-width: 900px){
-      .below{ grid-template-columns: 1fr; }
+    @media (max-height: 780px){
+      .vline{
+        font-size: 15.5px;
+        margin: 7px 0;
+      }
+      .ref{ margin-top: 8px; }
+      .miniCard{ padding: 10px; }
     }
 
     /* Bottom bar */
     .bottomBar{
       position:fixed;
-      left:0; right:0; bottom:0;
+      left:0; right:0;
+      bottom:0;
       z-index: 5;
-      padding: 10px 12px 14px;
+      padding: 10px 12px calc(14px + env(safe-area-inset-bottom));
       background: linear-gradient(180deg, rgba(5,9,20,0), rgba(5,9,20,.65) 35%, rgba(5,9,20,.92));
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
@@ -275,25 +304,41 @@
       border-radius: 14px;
       padding: 12px 10px;
       border:1px solid transparent;
-      background: rgba(255,255,255,.04); /* ✅ même couleur sombre partout */
+      background: rgba(255,255,255,.04);
       transition: transform .08s ease, background .2s ease, border-color .2s ease;
       white-space:nowrap;
       min-height: 46px;
+      min-width: 0; /* ✅ allow ellipsis */
     }
+
     .navItem:hover{
       transform: translateY(-1px);
       background: rgba(255,255,255,.07);
       border-color: rgba(255,255,255,.12);
     }
 
-    /* ✅ YouTube plus gros au milieu, sans fond rouge */
     .navItem.youtube{
       flex: 1.18;
     }
 
     .icon{ width:20px;height:20px; display:inline-block; }
-    .label{ font-size: 14px; }
 
+    .label{
+      font-size: 14px;
+      min-width:0;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      max-width: 100%;
+    }
+
+    /* ✅ Contact email ellipsis only on very small widths */
+    @media (max-width: 420px){
+      .label.contact{
+        max-width: 120px;
+      }
+    }
+
+    /* YouTube center brand (bigger) */
     .ytWrap{
       display:flex;
       align-items:center;
@@ -301,24 +346,14 @@
       gap:12px;
     }
     .ytIcon{
-      width:34px;  /* ✅ plus gros */
-      height:24px; /* ✅ plus gros */
+      width:34px;
+      height:24px;
       display:block;
     }
     .ytText{
-      font-size: 16px; /* ✅ plus gros */
+      font-size: 16px;
       font-weight: 950;
       letter-spacing:.1px;
-    }
-
-    @media (max-width: 520px){
-      .ytText{ font-size: 15px; }
-      .ytIcon{ width:30px; height:22px; }
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      *{ transition:none !important; }
-      .blob{ display:none; }
     }
   </style>
 </head>
@@ -338,7 +373,8 @@
 
       <main>
         <section class="card verseCard" aria-label="Passage principal">
-          <div class="passage" id="passageActs"></div>
+          <!-- ✅ Inner scroll zone -->
+          <div class="passageScroll" id="passageActs"></div>
           <div class="ref" id="refActs">Actes 17:24-27</div>
         </section>
 
@@ -361,7 +397,6 @@
 
   <nav class="bottomBar" aria-label="Navigation">
     <div class="bottomInner">
-
       <!-- Gauche : TheWord -->
       <a class="navItem" href="https://www.theword.fr" target="_blank" rel="noopener" aria-label="TheWord">
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none">
@@ -372,10 +407,9 @@
         <span class="label" id="navWord">TheWord</span>
       </a>
 
-      <!-- Milieu : YouTube (gros logo officiel + texte) -->
+      <!-- Milieu : YouTube -->
       <a class="navItem youtube" href="https://youtube.com/@chercherdieu?si=5hk5jDcWrvlgVpFT" target="_blank" rel="noopener" aria-label="YouTube ChercherDieu">
         <span class="ytWrap">
-          <!-- Official-like YouTube logo: red rounded rect + white play -->
           <svg class="ytIcon" viewBox="0 0 32 24" aria-hidden="true">
             <rect x="0" y="2" width="32" height="20" rx="6" fill="var(--yt)"></rect>
             <polygon points="13,7.5 13,16.5 21,12" fill="#ffffff"></polygon>
@@ -390,10 +424,10 @@
           <path d="M5.2 7.4h13.6c.9 0 1.6.7 1.6 1.6v8.6c0 .9-.7 1.6-1.6 1.6H5.2c-.9 0-1.6-.7-1.6-1.6V9c0-.9.7-1.6 1.6-1.6Z" stroke="rgba(255,255,255,.65)" stroke-width="1.4"/>
           <path d="M6 9l6 4.6L18 9" stroke="rgba(255,255,255,.48)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <span class="label" id="navContact">contact@chercherdieu.com</span>
+        <span class="label contact" id="navContact">contact@chercherdieu.com</span>
       </a>
-
     </div>
+    <div class="safe-bottom" aria-hidden="true"></div>
   </nav>
 
   <script>
@@ -422,7 +456,6 @@
         passageJer: document.getElementById('passageJer'),
         twTitle: document.getElementById('twTitle'),
         twText: document.getElementById('twText'),
-        navYoutube: document.getElementById('navYoutube'),
       };
 
       function linesHTML(lines){
@@ -448,7 +481,6 @@
           els.passageJer.textContent = `« ${JER_FR} »`;
           els.twTitle.textContent = "The Word";
           els.twText.textContent = "Bible gratuite 100% hors ligne en 16 langues. Lecture, recherche, notes et études.";
-          els.navYoutube.textContent = "YouTube";
         }else{
           document.documentElement.lang = 'en';
           els.subtitle.textContent = "Acts 17:24-27";
@@ -458,7 +490,6 @@
           els.passageJer.textContent = `“${JER_EN}”`;
           els.twTitle.textContent = "The Word";
           els.twText.textContent = "Free offline Bible in 16 languages. Reading, search, notes and studies.";
-          els.navYoutube.textContent = "YouTube";
         }
       }
 
