@@ -42,11 +42,10 @@
 
       --focus: 0 0 0 3px rgba(96,165,250,.30);
 
-      --bottomH: 70px;
+      --bottomH: 72px;
 
-      /* YouTube red */
+      /* YouTube */
       --yt:#ff0033;
-      --yt2:#ff1a3d;
     }
 
     *{box-sizing:border-box}
@@ -60,7 +59,7 @@
         radial-gradient(760px 540px at 110% 115%, rgba(34,211,238,.12) 0%, transparent 58%),
         linear-gradient(180deg, var(--bg0), var(--bg1) 35%, var(--bg2));
       background-attachment: fixed;
-      overflow:hidden; /* pas de scroll global */
+      overflow:hidden; /* ✅ pas de scroll global */
     }
 
     .blob{
@@ -227,6 +226,15 @@
       color: rgba(238,245,255,.92);
     }
 
+    /* ✅ Bouton TheWord à gauche sous texte (sans "ouvrir") */
+    .miniActions{
+      display:flex;
+      align-items:center;
+      justify-content:flex-start; /* ✅ à gauche */
+      gap:10px;
+      padding-top: 2px;
+    }
+
     .miniBtn{
       display:inline-flex;
       align-items:center;
@@ -258,7 +266,6 @@
 
     @media (max-width: 900px){
       .below{ grid-template-columns: 1fr; }
-      .miniBtn{ width:100%; }
     }
 
     /* Bottom bar */
@@ -310,18 +317,35 @@
       border-color: rgba(255,255,255,.12);
     }
 
-    /* ✅ YouTube rouge au milieu */
+    /* ✅ Bouton YouTube officiel-like au milieu */
     .navItem.youtube{
-      background: linear-gradient(180deg, rgba(255,0,51,.22), rgba(255,255,255,.04));
+      flex: 1.15;
+      background: linear-gradient(180deg, rgba(255,0,51,.18), rgba(255,255,255,.04));
       border-color: rgba(255,0,51,.35);
     }
     .navItem.youtube:hover{
       border-color: rgba(255,0,51,.60);
-      background: linear-gradient(180deg, rgba(255,0,51,.26), rgba(255,255,255,.05));
+      background: linear-gradient(180deg, rgba(255,0,51,.22), rgba(255,255,255,.05));
     }
 
     .icon{ width:20px;height:20px; display:inline-block; }
     .label{ font-size: 14px; }
+
+    .ytBrand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .ytLogo{
+      height:18px;
+      width:auto;
+      display:block;
+    }
+    .ytText{
+      font-weight: 950;
+      letter-spacing: .1px;
+      font-size: 14px;
+    }
 
     @media (prefers-reduced-motion: reduce){
       *{ transition:none !important; }
@@ -356,10 +380,12 @@
               Bible gratuite 100% hors ligne en 16 langues. Lecture, recherche, notes et études.
             </p>
 
-            <!-- ✅ Bouton TheWord sous descriptif -->
-            <a class="miniBtn" href="https://www.theword.fr" target="_blank" rel="noopener" aria-label="Ouvrir TheWord">
-              📖 Ouvrir TheWord
-            </a>
+            <!-- ✅ bouton à gauche sous texte + sans "ouvrir" -->
+            <div class="miniActions">
+              <a class="miniBtn" href="https://www.theword.fr" target="_blank" rel="noopener" aria-label="TheWord">
+                TheWord
+              </a>
+            </div>
           </div>
 
           <div class="miniCard">
@@ -371,29 +397,11 @@
     </div>
   </div>
 
+  <!-- ✅ Barre du bas : gauche TheWord / milieu YouTube / droite Contact -->
   <nav class="bottomBar" aria-label="Navigation">
     <div class="bottomInner">
 
-      <!-- Gauche : Contact -->
-      <a class="navItem" href="mailto:contact@chercherdieu.com" aria-label="Contact email">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none">
-          <path d="M5.2 7.4h13.6c.9 0 1.6.7 1.6 1.6v8.6c0 .9-.7 1.6-1.6 1.6H5.2c-.9 0-1.6-.7-1.6-1.6V9c0-.9.7-1.6 1.6-1.6Z" stroke="rgba(255,255,255,.65)" stroke-width="1.4"/>
-          <path d="M6 9l6 4.6L18 9" stroke="rgba(255,255,255,.48)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span class="label" id="navContact">contact@chercherdieu.com</span>
-      </a>
-
-      <!-- Milieu : YouTube rouge -->
-      <a class="navItem youtube" href="https://youtube.com/@chercherdieu?si=5hk5jDcWrvlgVpFT" target="_blank" rel="noopener" aria-label="YouTube ChercherDieu">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none">
-          <path d="M21.6 7.2c.2 1.3.2 2.6.2 4.8s0 3.5-.2 4.8c-.2 1.1-.9 2-2 2.2-1.9.4-7.6.4-7.6.4s-5.7 0-7.6-.4c-1.1-.2-1.8-1.1-2-2.2C2.2 15.5 2.2 14.2 2.2 12s0-3.5.2-4.8c.2-1.1.9-2 2-2.2C6.3 4.6 12 4.6 12 4.6s5.7 0 7.6.4c1.1.2 1.8 1.1 2 2.2Z" fill="rgba(255,255,255,.12)"/>
-          <path d="M10.3 15.3V8.7l6 3.3-6 3.3Z" fill="rgba(255,255,255,.94)"/>
-          <path d="M21.6 7.2c.2 1.3.2 2.6.2 4.8s0 3.5-.2 4.8c-.2 1.1-.9 2-2 2.2-1.9.4-7.6.4-7.6.4s-5.7 0-7.6-.4c-1.1-.2-1.8-1.1-2-2.2C2.2 15.5 2.2 14.2 2.2 12s0-3.5.2-4.8c.2-1.1.9-2 2-2.2C6.3 4.6 12 4.6 12 4.6s5.7 0 7.6.4c1.1.2 1.8 1.1 2 2.2Z" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
-        </svg>
-        <span class="label" id="navYoutube">YouTube</span>
-      </a>
-
-      <!-- Droite : TheWord -->
+      <!-- Gauche : TheWord -->
       <a class="navItem" href="https://www.theword.fr" target="_blank" rel="noopener" aria-label="TheWord">
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none">
           <path d="M7 4.5h9.2c1.5 0 2.8 1.2 2.8 2.8v12.2c0 .6-.5 1.1-1.1 1.1H8.2c-1.6 0-3.2-.7-3.2-2.6V6.6c0-1.3.9-2.1 2-2.1Z" stroke="rgba(255,255,255,.65)" stroke-width="1.4"/>
@@ -402,6 +410,32 @@
         </svg>
         <span class="label" id="navWord">TheWord</span>
       </a>
+
+      <!-- Milieu : YouTube (logo "officiel-like") -->
+      <a class="navItem youtube" href="https://youtube.com/@chercherdieu?si=5hk5jDcWrvlgVpFT" target="_blank" rel="noopener" aria-label="YouTube ChercherDieu">
+        <span class="ytBrand" aria-hidden="true">
+          <!-- YouTube play + wordmark (SVG inline) -->
+          <svg class="ytLogo" viewBox="0 0 140 32">
+            <!-- play container -->
+            <rect x="0" y="4" rx="8" ry="8" width="44" height="24" fill="#FF0033"></rect>
+            <polygon points="18,10 18,22 30,16" fill="#FFFFFF"></polygon>
+            <!-- text "YouTube" -->
+            <text x="54" y="22" fill="#FFFFFF" font-size="18" font-weight="900" font-family="Arial, Inter, system-ui">
+              YouTube
+            </text>
+          </svg>
+        </span>
+      </a>
+
+      <!-- Droite : Contact (email complet) -->
+      <a class="navItem" href="mailto:contact@chercherdieu.com" aria-label="Contact email">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none">
+          <path d="M5.2 7.4h13.6c.9 0 1.6.7 1.6 1.6v8.6c0 .9-.7 1.6-1.6 1.6H5.2c-.9 0-1.6-.7-1.6-1.6V9c0-.9.7-1.6 1.6-1.6Z" stroke="rgba(255,255,255,.65)" stroke-width="1.4"/>
+          <path d="M6 9l6 4.6L18 9" stroke="rgba(255,255,255,.48)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="label" id="navContact">contact@chercherdieu.com</span>
+      </a>
+
     </div>
   </nav>
 
@@ -473,4 +507,5 @@
   </script>
 </body>
 </html>
+
 
