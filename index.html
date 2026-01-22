@@ -4,101 +4,416 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ChercherDieu.com — Accueil</title>
-  <meta name="description" content="Chercher Dieu et sa Parole — Actes 17: Il n'est pas loin de chacun de nous." />
+  <meta name="description" content="Chercher Dieu et sa Parole — Actes 17 : Il n'est pas loin de chacun de nous." />
   <link rel="canonical" href="https://chercherdieu.com/" />
   <meta property="og:title" content="Chercher Dieu" />
   <meta property="og:description" content="Actes 17 — Il n'est pas loin de chacun de nous." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://chercherdieu.com/" />
   <meta name="theme-color" content="#1e40af" />
+
   <style>
     :root{
-      /* Thème bleu façon TheWord */
-      --bg1:#0ea5e9; /* sky-500 */
-      --bg2:#2563eb; /* indigo-600 */
-      --glow1:#bfdbfe22;
-      --glow2:#93c5fd22;
-      --card:#0b122480;       /* verre sombre bleu */
-      --card-brd:#ffffff22;
-      --text:#eaf2ff;
+      /* Palette "TheWord-ish" */
+      --bg-top:#0ea5e9;       /* sky-500 */
+      --bg-mid:#2563eb;       /* blue-600 */
+      --bg-deep:#0b1224;      /* deep navy */
+      --glass:#0b12248a;      /* glass card */
+      --glass-2:#0b12246a;
+      --brd:#ffffff1f;
+      --brd-2:#ffffff2c;
+      --text:#eef5ff;
       --muted:#c7d2fe;
-      --accent:#ffffff;
+      --muted2:#a5b4fc;
+
       --btn:#ffffff12;
-      --btn-brd:#ffffff33;
-      --shadow:0 12px 36px rgba(0,0,0,.45);
+      --btnHover:#ffffff1b;
+      --btnActive:#ffffff22;
+
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --shadowSoft: 0 10px 28px rgba(0,0,0,.35);
+
+      --radius:28px;
+      --radius2:18px;
+      --radius3:14px;
+
+      --focus: 0 0 0 3px rgba(147, 197, 253, .35);
     }
+
     *{box-sizing:border-box}
-    html,body{
-      height:100%;margin:0;color:var(--text);
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--text);
       font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Inter, Arial;
       background:
-        radial-gradient(1200px 800px at 10% -20%, var(--glow1) 0%, transparent 55%),
-        radial-gradient(900px 700px at 120% 120%, var(--glow2) 0%, transparent 50%),
-        linear-gradient(135deg, var(--bg1), var(--bg2));
+        radial-gradient(1100px 700px at 15% -10%, rgba(191,219,254,.18) 0%, transparent 55%),
+        radial-gradient(900px 650px at 110% 115%, rgba(147,197,253,.16) 0%, transparent 52%),
+        linear-gradient(135deg, var(--bg-top), var(--bg-mid));
       background-attachment: fixed;
+      overflow-x:hidden;
     }
-    .wrap{min-height:100%;display:grid;place-items:center;padding:24px}
+
+    /* Petits blobs lumineux (discrets) */
+    .blob{
+      position:fixed;
+      inset:auto;
+      width:520px;height:520px;
+      filter: blur(42px);
+      opacity:.16;
+      pointer-events:none;
+      transform: translate3d(0,0,0);
+      z-index:0;
+    }
+    .blob.b1{
+      left:-180px; top:-180px;
+      background: radial-gradient(circle at 30% 30%, rgba(34,211,238,.95), transparent 60%);
+    }
+    .blob.b2{
+      right:-220px; bottom:-260px;
+      background: radial-gradient(circle at 70% 60%, rgba(96,165,250,.95), transparent 60%);
+    }
+
+    .wrap{
+      position:relative;
+      z-index:1;
+      min-height:100%;
+      display:grid;
+      place-items:center;
+      padding:22px;
+    }
+
     .card{
-      width:100%;max-width:980px;background:var(--card);
-      border:1px solid var(--card-brd);border-radius:28px;
-      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-      box-shadow:var(--shadow);padding:28px 28px 22px
+      width:100%;
+      max-width:1020px;
+      background: linear-gradient(180deg, var(--glass), var(--glass-2));
+      border:1px solid var(--brd);
+      border-radius: var(--radius);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+      padding: 22px;
     }
 
-    header{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-    .brand{display:flex;align-items:center;gap:14px}
+    /* Header */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+      padding: 4px 4px 8px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width: 240px;
+    }
+
     .logo{
-      width:46px;height:46px;border-radius:14px;border:1px solid var(--btn-brd);
+      width:46px;height:46px;
+      border-radius:16px;
+      border:1px solid var(--brd-2);
       background: conic-gradient(from 220deg, #60a5fa, #38bdf8, #22d3ee, #60a5fa);
-      box-shadow: inset 0 0 18px rgba(255,255,255,.35), 0 8px 22px rgba(59,130,246,.35);
+      box-shadow:
+        inset 0 0 18px rgba(255,255,255,.28),
+        0 10px 24px rgba(59,130,246,.30);
     }
-    h1{margin:0;letter-spacing:.4px;font-size:clamp(24px,3.6vw,40px);font-weight:800}
-    .sub{margin-top:6px;color:var(--muted);font-size:14px}
 
-    .lang{display:flex;gap:8px;align-items:center}
+    .title{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      line-height:1.1;
+    }
+
+    h1{
+      margin:0;
+      font-size: clamp(24px, 3.6vw, 40px);
+      font-weight: 900;
+      letter-spacing: .35px;
+    }
+
+    .tagline{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      font-size: 13.5px;
+      color: var(--muted);
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border:1px solid var(--brd);
+      background: rgba(255,255,255,.08);
+      color: var(--text);
+      font-weight: 800;
+      letter-spacing:.15px;
+      box-shadow: var(--shadowSoft);
+      user-select:none;
+      white-space:nowrap;
+    }
+    .dot{
+      width:8px;height:8px;
+      border-radius:50%;
+      background: rgba(34,211,238,.95);
+      box-shadow: 0 0 0 4px rgba(34,211,238,.12);
+    }
+
+    /* Lang switch (style app) */
+    .lang{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      padding:6px;
+      border-radius: 999px;
+      border:1px solid var(--brd);
+      background: rgba(255,255,255,.07);
+    }
+
     .btn{
-      border:1px solid var(--btn-brd);background:var(--btn);color:var(--accent);
-      padding:8px 12px;border-radius:12px;cursor:pointer;font-weight:700;letter-spacing:.2px;
-      transition:transform .06s ease, background .2s ease, border-color .2s ease
+      border:1px solid transparent;
+      background: transparent;
+      color: var(--text);
+      padding: 9px 12px;
+      border-radius: 999px;
+      cursor:pointer;
+      font-weight: 900;
+      letter-spacing:.2px;
+      transition: transform .08s ease, background .2s ease, border-color .2s ease;
     }
-    .btn:hover{transform:translateY(-1px)}
-    .btn.active{background:#ffffff26;border-color:#ffffff55}
+    .btn:hover{ background: rgba(255,255,255,.08); transform: translateY(-1px); }
+    .btn.active{
+      background: rgba(255,255,255,.16);
+      border-color: rgba(255,255,255,.22);
+    }
+    .btn:focus-visible{ outline:none; box-shadow: var(--focus); }
 
-    main{margin-top:18px}
-    .ref{color:var(--muted);margin-top:8px;font-size:14px}
-    .coming{margin-top:10px;font-size:14px;color:var(--muted)}
+    /* Main */
+    main{ margin-top: 10px; padding: 8px 4px 4px; }
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:16px;
+      align-items:stretch;
+    }
+    @media (max-width: 860px){
+      .hero{ grid-template-columns: 1fr; }
+    }
+
+    .panel{
+      border:1px solid var(--brd);
+      background: rgba(255,255,255,.06);
+      border-radius: var(--radius2);
+      padding: 16px 16px 14px;
+      box-shadow: var(--shadowSoft);
+    }
+
+    .panelHeader{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+      margin-bottom: 10px;
+    }
+
+    .ref{
+      color: var(--muted2);
+      font-weight: 800;
+      letter-spacing:.2px;
+      font-size: 13px;
+      margin: 0;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      user-select:none;
+      white-space:nowrap;
+    }
+
+    .refBadge{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      color: var(--text);
+      font-weight: 900;
+    }
+
     .passage{
-      margin:16px 0 10px;padding:14px;border-radius:16px;border:1px solid var(--card-brd);background:#ffffff0e
+      padding-top: 2px;
     }
-    blockquote{margin:0}
-    .vline{margin:10px 0;line-height:1.75;font-size:18px}
+
+    blockquote{ margin:0; }
+
+    .vline{
+      margin: 10px 0;
+      line-height: 1.75;
+      font-size: 18px;
+      letter-spacing: .1px;
+    }
+    @media (max-width: 420px){
+      .vline{ font-size: 17px; }
+    }
+
     .vnum{
-      display:inline-block;min-width:1.6em;text-align:right;margin-right:.4em;
-      font-variant-numeric: tabular-nums;opacity:.8;font-weight:700
+      display:inline-block;
+      min-width:1.8em;
+      text-align:right;
+      margin-right:.45em;
+      font-variant-numeric: tabular-nums;
+      opacity:.8;
+      font-weight:900;
+      color: rgba(255,255,255,.85);
     }
 
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:22px}
-    .cta,.link{
-      display:inline-flex;align-items:center;gap:8px;text-decoration:none;border:1px solid var(--btn-brd);
-      background:var(--btn);color:var(--accent);padding:11px 14px;border-radius:14px;font-weight:800
+    .divider{
+      height:1px;
+      background: rgba(255,255,255,.12);
+      margin: 14px 0 10px;
     }
 
-    footer{margin-top:24px;padding-top:16px;border-top:1px solid var(--card-brd);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
-    .small{font-size:12px}
-    .email{color:var(--accent);font-weight:700;text-decoration:none}
+    /* Side panel (cta) */
+    .sideTop{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .sideTitle{
+      margin:0;
+      font-weight: 950;
+      font-size: 16px;
+      letter-spacing:.2px;
+    }
+    .sideText{
+      margin:0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      margin-top: 12px;
+    }
+
+    a.cta{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      text-decoration:none;
+
+      border:1px solid rgba(255,255,255,.22);
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+      color: var(--text);
+
+      padding: 12px 14px;
+      border-radius: 16px;
+
+      font-weight: 950;
+      letter-spacing:.2px;
+      transition: transform .08s ease, background .2s ease, border-color .2s ease;
+    }
+    a.cta:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.32);
+      background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.07));
+    }
+    a.cta:focus-visible{ outline:none; box-shadow: var(--focus); }
+
+    .rightIcon{
+      opacity:.9;
+      font-weight:900;
+      transform: translateY(-.5px);
+    }
+
+    .mini{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding: 10px 12px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      color: var(--muted);
+      font-size: 13.5px;
+    }
+
+    .email{
+      color: var(--text);
+      font-weight: 900;
+      text-decoration:none;
+    }
+    .email:hover{ text-decoration: underline; }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 6px 2px;
+      border-top:1px solid rgba(255,255,255,.12);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      color: var(--muted);
+      font-size: 13.5px;
+    }
+
+    .quote{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      font-weight: 800;
+      color: rgba(255,255,255,.80);
+    }
+    .quoteMark{
+      opacity:.9;
+      font-size: 16px;
+    }
+    .small{ font-size:12px; opacity:.9; }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      *{ transition:none !important; }
+      .blob{ display:none; }
+    }
   </style>
 </head>
+
 <body>
+  <div class="blob b1" aria-hidden="true"></div>
+  <div class="blob b2" aria-hidden="true"></div>
+
   <div class="wrap">
     <div class="card" role="region" aria-label="Accueil Chercher Dieu">
+
       <header>
         <div class="brand">
           <div class="logo" aria-hidden="true"></div>
-          <div>
+          <div class="title">
             <h1>Chercher Dieu</h1>
-            <div class="sub" id="tagline">Actes 17 — Chercher et trouver Dieu.</div>
+            <div class="tagline" id="tagline">
+              <span class="pill"><span class="dot" aria-hidden="true"></span><span id="pillText">En construction</span></span>
+              <span id="subtitle">Actes 17 — Chercher et trouver Dieu.</span>
+            </div>
           </div>
         </div>
+
         <div class="lang" aria-label="Changer de langue">
           <button class="btn" id="btn-fr" type="button">Français</button>
           <button class="btn" id="btn-en" type="button">English</button>
@@ -106,20 +421,58 @@
       </header>
 
       <main>
-        <div class="passage" id="passage">
-          <!-- Contenu FR/EN injecté par JS -->
-        </div>
-        <div class="ref" id="ref">Actes 17:24–27</div>
-        <div class="coming" id="coming">Un site pour faire connaître Dieu et sa Parole — en construction…</div>
+        <section class="hero" aria-label="Passage et liens">
+          <!-- Passage -->
+          <div class="panel">
+            <div class="panelHeader">
+              <p class="ref" id="ref">
+                <span class="refBadge">Actes 17:24–27</span>
+              </p>
+              <span class="pill" style="opacity:.92;">
+                ✨ <span id="hint">Une invitation à chercher Dieu</span>
+              </span>
+            </div>
 
-        <div class="grid">
-          <a class="cta" id="cta-word" href="https://www.theword.fr" target="_blank" rel="noopener">🔗 Ouvrir theword.fr</a>
-          <a class="link" href="mailto:contact@chercherdieu.com">✉️ contact@chercherdieu.com</a>
-        </div>
+            <div class="passage" id="passage">
+              <!-- Injecté par JS -->
+            </div>
+
+            <div class="divider" role="separator" aria-hidden="true"></div>
+
+            <p class="sideText" id="coming" style="margin:0;">
+              Un site pour faire connaître Dieu et sa Parole — en construction…
+            </p>
+          </div>
+
+          <!-- Side CTA -->
+          <aside class="panel" aria-label="Liens">
+            <div class="sideTop">
+              <p class="sideTitle" id="sideTitle">Aller plus loin</p>
+              <p class="sideText" id="sideText">
+                Lire la Bible facilement (hors ligne) et garder des notes avec l’application TheWord.
+              </p>
+            </div>
+
+            <div class="grid">
+              <a class="cta" id="cta-word" href="https://www.theword.fr" target="_blank" rel="noopener">
+                <span id="ctaText">Ouvrir theword.fr</span>
+                <span class="rightIcon">→</span>
+              </a>
+
+              <div class="mini">
+                <span id="mailLabel">Contact</span>
+                <a class="email" href="mailto:contact@chercherdieu.com">contact@chercherdieu.com</a>
+              </div>
+            </div>
+          </aside>
+        </section>
       </main>
 
       <footer>
-        <div id="foot">« Il n'est pas loin de chacun de nous. »</div>
+        <div class="quote" id="foot">
+          <span class="quoteMark" aria-hidden="true">“</span>
+          <span>Il n'est pas loin de chacun de nous.</span>
+        </div>
         <div class="small">© <span id="year"></span> chercherdieu.com</div>
       </footer>
     </div>
@@ -127,8 +480,7 @@
 
   <script>
     (function(){
-      // Texte complet d'Actes 17:24–27
-      // FR : LSG (domaine public, style classique)
+      // Actes 17:24–27
       const PASSAGE_FR = [
         { n: 24, t: "Le Dieu qui a fait le monde et tout ce qui s'y trouve, étant le Seigneur du ciel et de la terre, n'habite point dans des temples faits de main d'homme;" },
         { n: 25, t: "Il n'est point servi par des mains humaines, comme s'il avait besoin de quelque chose, lui qui donne à tous la vie, la respiration et toutes choses;" },
@@ -136,7 +488,7 @@
         { n: 27, t: "afin qu'ils cherchent le Seigneur, et qu'ils s'efforcent de le trouver en tâtonnant, bien qu'il ne soit pas loin de chacun de nous;" }
       ];
 
-      // EN : KJV (public domain)
+      // Acts 17:24–27 (KJV)
       const PASSAGE_EN = [
         { n: 24, t: "God that made the world and all things therein, seeing that he is Lord of heaven and earth, dwelleth not in temples made with hands;" },
         { n: 25, t: "Neither is worshipped with men's hands, as though he needed any thing, seeing he giveth to all life, and breath, and all things;" },
@@ -151,11 +503,18 @@
         year: document.getElementById('year'),
         btnFr: document.getElementById('btn-fr'),
         btnEn: document.getElementById('btn-en'),
-        ctaWord: document.getElementById('cta-word')
+        ctaText: document.getElementById('ctaText'),
+        subtitle: document.getElementById('subtitle'),
+        sideTitle: document.getElementById('sideTitle'),
+        sideText: document.getElementById('sideText'),
+        coming: document.getElementById('coming'),
+        pillText: document.getElementById('pillText'),
+        hint: document.getElementById('hint'),
+        mailLabel: document.getElementById('mailLabel'),
       };
 
       const saved = localStorage.getItem('cd-lang');
-      const prefers = saved || ((navigator.language||'en').toLowerCase().startsWith('fr')?'fr':'en');
+      const prefers = saved || ((navigator.language||'en').toLowerCase().startsWith('fr') ? 'fr' : 'en');
       let lang = prefers;
 
       function linesHTML(lines){
@@ -167,24 +526,46 @@
       function render(){
         if(lang==='fr'){
           els.passage.innerHTML = linesHTML(PASSAGE_FR);
-          els.ref.textContent = "Actes 17:24–27";
+          els.ref.innerHTML = `<span class="refBadge">Actes 17:24–27</span>`;
           document.documentElement.lang = 'fr';
+
           els.btnFr.classList.add('active');
           els.btnEn.classList.remove('active');
-          els.foot.textContent = "« Il n'est pas loin de chacun de nous. »";
-          els.ctaWord.textContent = "🔗 Ouvrir theword.fr";
+
+          els.foot.innerHTML = `<span class="quoteMark" aria-hidden="true">“</span><span>Il n'est pas loin de chacun de nous.</span>`;
+          els.ctaText.textContent = "Ouvrir theword.fr";
+          els.subtitle.textContent = "Actes 17 — Chercher et trouver Dieu.";
+          els.sideTitle.textContent = "Aller plus loin";
+          els.sideText.textContent = "Lire la Bible facilement (hors ligne) et garder des notes avec l’application TheWord.";
+          els.coming.textContent = "Un site pour faire connaître Dieu et sa Parole — en construction…";
+          els.pillText.textContent = "En construction";
+          els.hint.textContent = "Une invitation à chercher Dieu";
+          els.mailLabel.textContent = "Contact";
         }else{
           els.passage.innerHTML = linesHTML(PASSAGE_EN);
-          els.ref.textContent = "Acts 17:24–27";
+          els.ref.innerHTML = `<span class="refBadge">Acts 17:24–27</span>`;
           document.documentElement.lang = 'en';
+
           els.btnEn.classList.add('active');
           els.btnFr.classList.remove('active');
-          els.foot.textContent = "“He is not far from any one of us.”";
-          els.ctaWord.textContent = "🔗 Open theword.fr";
+
+          els.foot.innerHTML = `<span class="quoteMark" aria-hidden="true">“</span><span>He is not far from any one of us.</span>`;
+          els.ctaText.textContent = "Open theword.fr";
+          els.subtitle.textContent = "Acts 17 — Seek and find God.";
+          els.sideTitle.textContent = "Go further";
+          els.sideText.textContent = "Read the Bible easily (offline) and save your notes with TheWord app.";
+          els.coming.textContent = "A website to make God and His Word known — under construction…";
+          els.pillText.textContent = "Under construction";
+          els.hint.textContent = "An invitation to seek God";
+          els.mailLabel.textContent = "Contact";
         }
       }
 
-      function setLang(L){ lang=L; localStorage.setItem('cd-lang', lang); render(); }
+      function setLang(L){
+        lang = L;
+        localStorage.setItem('cd-lang', lang);
+        render();
+      }
 
       els.btnFr.addEventListener('click', ()=>setLang('fr'));
       els.btnEn.addEventListener('click', ()=>setLang('en'));
@@ -195,4 +576,3 @@
   </script>
 </body>
 </html>
-
