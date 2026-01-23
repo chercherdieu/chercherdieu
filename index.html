@@ -167,13 +167,13 @@
 
     blockquote{ margin:0; padding:0; }
 
-    .vline{
-      margin: 10px 0;
-      line-height: 1.7;
-      font-size: 17px;
-      letter-spacing: .10px;
-      color: rgba(238,245,255,.96);
-    }
+  .vline{
+  margin: 10px 0;
+  line-height: 1.7;
+  font-size: clamp(16px, 4.4vw, 21px); /* ✅ auto responsive */
+  letter-spacing: .10px;
+  color: rgba(238,245,255,.96);
+  }
 
     .ref{
       flex: 0 0 auto;
