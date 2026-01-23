@@ -401,7 +401,7 @@
         </section>
 
         <section class="below" aria-label="Informations">
-          <div class="miniCard">
+          <div class="miniCard clickCard" id="twCard" role="link" tabindex="0" aria-label="The Word (ouvrir TheWord)">
             <p class="miniTitle" id="twTitle">The Word</p>
             <p class="miniText" id="twText">
               Bible gratuite 100% hors ligne en 16 langues. Lecture, recherche, notes et études.
@@ -503,6 +503,7 @@
         jerText: document.getElementById('jerText'),
         mainVerseCard: document.getElementById('mainVerseCard'),
         jerCard: document.getElementById('jerCard'),
+        twCard: document.getElementById('twCard'),
       };
 
       function isFrenchLocale(){
@@ -553,6 +554,7 @@
 
       bindCard(els.mainVerseCard); // ✅ click on main verse => theword.fr
       bindCard(els.jerCard);       // ✅ click on Jeremiah card => theword.fr
+      bindCard(els.twCard);
 
       render();
     })();
