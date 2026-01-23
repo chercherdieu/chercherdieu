@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ChercherDieu.com</title>
 
-  <meta name="description" content="Chercher Dieu et sa Parole — Actes 17:24-27." />
+  <meta name="description" content="Chercher Dieu et sa Parole — Jérémie 29:13." />
   <link rel="canonical" href="https://chercherdieu.com/" />
 
   <meta property="og:title" content="Chercher Dieu" />
-  <meta property="og:description" content="Actes 17:24-27." />
+  <meta property="og:description" content="Jérémie 29:13." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://chercherdieu.com/" />
 
@@ -41,22 +41,15 @@
       /* YouTube red (logo only) */
       --yt:#FF0033;
 
-      /* ✅ Tailles responsive (PC + mobile) */
+      /* Responsive sizes */
       --h1: clamp(30px, 3.2vw + 10px, 58px);
-      --sub: clamp(12px, 1.2vw + 8px, 16px);
-
-      /* ✅ Texte Actes (plus gros partout) */
-      --acts: clamp(17px, 2.2vw + 8px, 26px);
-      --actsLine: clamp(1.55, 1.2vw + 1.35, 1.85);
-
-      /* ✅ Ref Actes */
+      --mainVerse: clamp(18px, 2.4vw + 8px, 28px);
+      --mainLine: clamp(1.55, 1.2vw + 1.35, 1.9);
       --ref: clamp(13px, 1.2vw + 8px, 16px);
 
-      /* ✅ Textes cartes */
       --miniTitle: clamp(13px, 1.1vw + 8px, 15px);
       --miniText: clamp(13px, 1.15vw + 8px, 15.5px);
 
-      /* ✅ Boutons */
       --btnText: clamp(14px, 1.2vw + 8px, 16px);
     }
 
@@ -72,7 +65,7 @@
         radial-gradient(760px 540px at 110% 115%, rgba(34,211,238,.12) 0%, transparent 58%),
         linear-gradient(180deg, var(--bg0), var(--bg1) 35%, var(--bg2));
       background-attachment: fixed;
-      overflow:hidden; /* ✅ app style */
+      overflow:hidden; /* app style */
     }
 
     .blob{
@@ -92,7 +85,6 @@
       background: radial-gradient(circle at 60% 55%, rgba(34,211,238,.95), transparent 62%);
     }
 
-    /* ✅ dynamic viewport */
     .wrap{
       position:relative;
       z-index:1;
@@ -104,7 +96,7 @@
 
     .container{
       width:100%;
-      max-width: 1280px; /* ✅ plus large sur PC */
+      max-width: 1280px;
       height: calc(100dvh - var(--bottomH) - 24px - env(safe-area-inset-bottom));
       display:flex;
       flex-direction:column;
@@ -136,13 +128,6 @@
       text-shadow: 0 2px 0 rgba(0,0,0,.35);
     }
 
-    .sub{
-      margin:0;
-      color: var(--muted);
-      font-size: var(--sub);
-      letter-spacing:.15px;
-    }
-
     main{
       flex: 1 1 auto;
       display:flex;
@@ -159,11 +144,11 @@
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       box-shadow: var(--shadow);
-      padding: 18px; /* ✅ un peu plus spacieux */
+      padding: 18px;
       min-height: 0;
     }
 
-    /* ✅ Acts block with internal scroll */
+    /* ✅ Main verse card clickable */
     .verseCard{
       flex: 1 1 auto;
       display:flex;
@@ -172,41 +157,43 @@
       text-align:center;
       min-height: 0;
       padding: 18px;
+      cursor:pointer;
+      user-select:none;
+      transition: transform .08s ease, border-color .2s ease, background .2s ease;
+      outline: none;
+    }
+    .verseCard:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.20);
+      background: linear-gradient(180deg, rgba(11,18,36,.92), rgba(11,18,36,.75));
+    }
+    .verseCard:focus-visible{
+      box-shadow: 0 0 0 3px rgba(96,165,250,.30), var(--shadow);
     }
 
-    /* ✅ Scroll interne seulement si besoin */
-    .passageScroll{
+    .passageBox{
       width:100%;
-      max-width: 1080px; /* ✅ plus large sur PC */
+      max-width: 1080px;
       flex: 1 1 auto;
       min-height: 0;
-      overflow:auto;
-      -webkit-overflow-scrolling: touch;
-      padding: 10px 6px 10px;
-
-      /* ✅ si texte court -> centre verticalement */
       display:flex;
       flex-direction:column;
       justify-content:center;
+      padding: 6px 6px 6px;
     }
 
-    blockquote{
-      margin:0;
-      padding:0;
-    }
-
-    /* ✅ Texte Actes plus gros */
-    .vline{
-      margin: clamp(8px, 1.1vh, 14px) 0;
-      line-height: var(--actsLine);
-      font-size: var(--acts);
+    .mainLine{
+      margin: 0;
+      line-height: var(--mainLine);
+      font-size: var(--mainVerse);
       letter-spacing: .10px;
       color: rgba(238,245,255,.97);
     }
 
+    /* ✅ Ref just under verse with light spacing */
     .ref{
       flex: 0 0 auto;
-      margin-top: 12px;
+      margin-top: 6px; /* ✅ légère interligne */
       font-weight: 950;
       color: var(--accent2);
       letter-spacing:.2px;
@@ -253,16 +240,26 @@
       color: rgba(238,245,255,.92);
     }
 
-    /* ✅ TheWord button inside card (mobile) */
+    /* ✅ Jeremiah card clickable too */
+    .clickCard{
+      cursor:pointer;
+      user-select:none;
+      transition: transform .08s ease, background .2s ease, border-color .2s ease;
+    }
+    .clickCard:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.18);
+    }
+
     .twActionRow{
-      display:none; /* shown on mobile */
+      display:none; /* mobile only */
       padding-top: 4px;
     }
     .twBtn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      gap:10px;
       text-decoration:none;
       color: var(--text);
       font-weight: 950;
@@ -343,7 +340,6 @@
       max-width: 100%;
     }
 
-    /* YouTube center */
     .ytWrap{
       display:flex;
       align-items:center;
@@ -355,22 +351,13 @@
       height:20px;
       display:block;
     }
-    .ytText{
-      font-weight: 950;
-      letter-spacing:.1px;
-    }
 
-    /* Desktop keeps 3 buttons, Mobile uses 2 buttons (YT + Contact) */
     .navDesktop{ display:flex; gap:10px; width:100%; }
     .navMobile{ display:none; gap:10px; width:100%; }
 
-    /* ✅ Mobile layout tuning */
     @media (max-width: 520px){
-      .sub{ display:none; }
-
-      /* ✅ texte Actes encore un peu plus gros sur mobile */
       :root{
-        --acts: clamp(18px, 4.2vw, 22px);
+        --mainVerse: clamp(19px, 4.3vw, 23px);
         --ref: 14px;
       }
 
@@ -379,25 +366,15 @@
         gap:12px;
       }
 
-      /* ✅ Show TheWord button in the card for mobile */
       .twActionRow{ display:block; }
-
-      /* ✅ Hide Jeremiah card on mobile */
       .miniCard.jerCard{ display:none; }
 
-      /* ✅ Switch bottom bar to only 2 buttons */
       .navDesktop{ display:none; }
       .navMobile{ display:flex; }
 
-      /* ✅ un peu moins de padding sur mobile pour gagner de la place */
       .card{ padding: 14px; }
       .verseCard{ padding: 14px; }
-      .passageScroll{ padding: 8px 4px 8px; }
-    }
-
-    @media (max-height: 780px){
-      .ref{ margin-top: 10px; }
-      .miniCard{ padding: 12px; }
+      .passageBox{ padding: 4px 4px 4px; }
     }
   </style>
 </head>
@@ -411,14 +388,16 @@
       <header>
         <div class="titleBlock">
           <h1 id="siteTitle">Chercher Dieu</h1>
-          <p class="sub" id="subtitle">Actes 17:24-27</p>
         </div>
       </header>
 
       <main>
-        <section class="card verseCard" aria-label="Passage principal">
-          <div class="passageScroll" id="passageActs"></div>
-          <div class="ref" id="refActs">Actes 17:24-27</div>
+        <!-- ✅ MAIN VERSE (click -> theword.fr) -->
+        <section class="card verseCard" id="mainVerseCard" role="link" tabindex="0" aria-label="Verset principal (ouvrir TheWord)">
+          <div class="passageBox">
+            <p class="mainLine" id="mainVerseText"></p>
+          </div>
+          <div class="ref" id="mainRef">Jérémie 29:13</div>
         </section>
 
         <section class="below" aria-label="Informations">
@@ -428,7 +407,7 @@
               Bible gratuite 100% hors ligne en 16 langues. Lecture, recherche, notes et études.
             </p>
 
-            <!-- ✅ Mobile only: bouton TheWord ici -->
+            <!-- Mobile: bouton TheWord ici -->
             <div class="twActionRow">
               <a class="twBtn" href="https://www.theword.fr" target="_blank" rel="noopener" aria-label="TheWord">
                 TheWord
@@ -436,9 +415,10 @@
             </div>
           </div>
 
-          <div class="miniCard jerCard">
+          <!-- Desktop only (click -> theword.fr) -->
+          <div class="miniCard jerCard clickCard" id="jerCard" role="link" tabindex="0" aria-label="Jérémie 23:29 (ouvrir TheWord)">
             <p class="miniTitle" id="jerTitle">Jérémie 23:29</p>
-            <p class="miniText jer" id="passageJer"></p>
+            <p class="miniText jer" id="jerText"></p>
           </div>
         </section>
       </main>
@@ -448,7 +428,7 @@
   <nav class="bottomBar" aria-label="Navigation">
     <div class="bottomInner">
 
-      <!-- ✅ Desktop: TheWord / YouTube / Contact -->
+      <!-- Desktop: TheWord / YouTube / Contact -->
       <div class="navDesktop">
         <a class="navItem" href="https://www.theword.fr" target="_blank" rel="noopener" aria-label="TheWord">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none">
@@ -465,7 +445,7 @@
               <rect x="0" y="2" width="32" height="20" rx="6" fill="var(--yt)"></rect>
               <polygon points="13,7.5 13,16.5 21,12" fill="#ffffff"></polygon>
             </svg>
-            <span class="ytText">YouTube</span>
+            <span class="label">YouTube</span>
           </span>
         </a>
 
@@ -478,7 +458,7 @@
         </a>
       </div>
 
-      <!-- ✅ Mobile: seulement YouTube + Contact -->
+      <!-- Mobile: YouTube + Contact -->
       <div class="navMobile">
         <a class="navItem" href="https://youtube.com/@chercherdieu?si=5hk5jDcWrvlgVpFT" target="_blank" rel="noopener" aria-label="YouTube ChercherDieu">
           <span class="ytWrap">
@@ -486,7 +466,7 @@
               <rect x="0" y="2" width="32" height="20" rx="6" fill="var(--yt)"></rect>
               <polygon points="13,7.5 13,16.5 21,12" fill="#ffffff"></polygon>
             </svg>
-            <span class="ytText">YouTube</span>
+            <span class="label">YouTube</span>
           </span>
         </a>
 
@@ -504,39 +484,45 @@
 
   <script>
     (function(){
-      const ACTS_FR = [
-        { t: "Le Dieu qui a fait le monde et tout ce qui s’y trouve, étant le Seigneur du ciel et de la terre, n’habite point dans des temples faits de main d’homme;" },
-        { t: "il n’est point servi par des mains humaines, comme s’il avait besoin de quoi que ce soit, lui qui donne à tous la vie, la respiration, et toutes choses." },
-        { t: "Il a fait que tous les hommes, sortis d’un seul sang, habitent sur toute la surface de la terre, ayant déterminé la durée des temps et les bornes de leur demeure;" },
-        { t: "il a voulu qu’ils cherchent le Seigneur, et qu’ils s’efforcent de le trouver en tâtonnant, bien qu’il ne soit pas loin de chacun de nous" }
-      ];
-      const JER_FR = "Ma parole n’est-elle pas comme un feu, dit l’Éternel, Et comme un marteau qui brise le roc?";
+      // ✅ Main verse (Jer 29:13)
+      const MAIN_FR = "Vous me chercherez, et vous me trouverez, si vous me cherchez de tout votre cœur.";
+      const MAIN_EN = "And ye shall seek me, and find me, when ye shall search for me with all your heart.";
 
-      const ACTS_EN = [
-        { t: "God that made the world and all things therein, seeing that he is Lord of heaven and earth, dwelleth not in temples made with hands;" },
-        { t: "Neither is worshipped with men's hands, as though he needed any thing, seeing he giveth to all life, and breath, and all things;" },
-        { t: "And hath made of one blood all nations of men for to dwell on all the face of the earth, and hath determined the times before appointed, and the bounds of their habitation;" },
-        { t: "That they should seek the Lord, if haply they might feel after him, and find him, though he be not far from every one of us:" }
-      ];
-      const JER_EN = "Is not my word like as a fire? saith the LORD; and like a hammer that breaketh the rock in pieces?";
+      // ✅ Jeremiah 23:29 (desktop card)
+      const JER23_FR = "Ma parole n’est-elle pas comme un feu, dit l’Éternel, Et comme un marteau qui brise le roc?";
+      const JER23_EN = "Is not my word like as a fire? saith the LORD; and like a hammer that breaketh the rock in pieces?";
+
+      const thewordUrl = "https://www.theword.fr";
 
       const els = {
-        subtitle: document.getElementById('subtitle'),
-        passageActs: document.getElementById('passageActs'),
-        refActs: document.getElementById('refActs'),
-        jerTitle: document.getElementById('jerTitle'),
-        passageJer: document.getElementById('passageJer'),
+        mainVerseText: document.getElementById('mainVerseText'),
+        mainRef: document.getElementById('mainRef'),
         twTitle: document.getElementById('twTitle'),
         twText: document.getElementById('twText'),
+        jerTitle: document.getElementById('jerTitle'),
+        jerText: document.getElementById('jerText'),
+        mainVerseCard: document.getElementById('mainVerseCard'),
+        jerCard: document.getElementById('jerCard'),
       };
-
-      function linesHTML(lines){
-        return '<blockquote>' + lines.map(v => `<p class="vline">${v.t}</p>`).join('') + '</blockquote>';
-      }
 
       function isFrenchLocale(){
         const lang = (navigator.language || 'en').toLowerCase();
         return lang.startsWith('fr');
+      }
+
+      function openTheWord(){
+        window.open(thewordUrl, "_blank", "noopener");
+      }
+
+      function bindCard(el){
+        if(!el) return;
+        el.addEventListener('click', openTheWord);
+        el.addEventListener('keydown', (e) => {
+          if(e.key === 'Enter' || e.key === ' '){
+            e.preventDefault();
+            openTheWord();
+          }
+        });
       }
 
       function render(){
@@ -544,24 +530,29 @@
 
         if(fr){
           document.documentElement.lang = 'fr';
-          els.subtitle.textContent = "Actes 17:24-27";
-          els.passageActs.innerHTML = linesHTML(ACTS_FR);
-          els.refActs.textContent = "Actes 17:24-27";
-          els.jerTitle.textContent = "Jérémie 23:29";
-          els.passageJer.textContent = `« ${JER_FR} »`;
+          els.mainVerseText.textContent = MAIN_FR;
+          els.mainRef.textContent = "Jérémie 29:13";
+
           els.twTitle.textContent = "The Word";
           els.twText.textContent = "Bible gratuite 100% hors ligne en 16 langues. Lecture, recherche, notes et études.";
+
+          els.jerTitle.textContent = "Jérémie 23:29";
+          els.jerText.textContent = `« ${JER23_FR} »`;
         }else{
           document.documentElement.lang = 'en';
-          els.subtitle.textContent = "Acts 17:24-27";
-          els.passageActs.innerHTML = linesHTML(ACTS_EN);
-          els.refActs.textContent = "Acts 17:24-27";
-          els.jerTitle.textContent = "Jeremiah 23:29";
-          els.passageJer.textContent = `“${JER_EN}”`;
+          els.mainVerseText.textContent = MAIN_EN;
+          els.mainRef.textContent = "Jeremiah 29:13";
+
           els.twTitle.textContent = "The Word";
           els.twText.textContent = "Free offline Bible in 16 languages. Reading, search, notes and studies.";
+
+          els.jerTitle.textContent = "Jeremiah 23:29";
+          els.jerText.textContent = `“${JER23_EN}”`;
         }
       }
+
+      bindCard(els.mainVerseCard); // ✅ click on main verse => theword.fr
+      bindCard(els.jerCard);       // ✅ click on Jeremiah card => theword.fr
 
       render();
     })();
