@@ -36,13 +36,12 @@
       --r1:28px;
       --r2:18px;
 
-      --bottomH: 76px;
-
       /* YouTube red (logo only) */
       --yt:#FF0033;
 
       /* Responsive sizes */
       --h1: clamp(30px, 3.2vw + 10px, 58px);
+
       --mainVerse: clamp(18px, 2.4vw + 8px, 28px);
       --mainLine: clamp(1.55, 1.2vw + 1.35, 1.9);
       --ref: clamp(13px, 1.2vw + 8px, 16px);
@@ -91,13 +90,13 @@
       height: 100dvh;
       display:flex;
       justify-content:center;
-      padding: 12px 14px calc(var(--bottomH) + 12px + env(safe-area-inset-bottom));
+      padding: 12px 14px 14px;
     }
 
     .container{
       width:100%;
       max-width: 1280px;
-      height: calc(100dvh - var(--bottomH) - 24px - env(safe-area-inset-bottom));
+      height: calc(100dvh - 26px);
       display:flex;
       flex-direction:column;
       gap: 12px;
@@ -106,18 +105,10 @@
 
     header{
       flex: 0 0 auto;
-      padding: 4px 6px 0;
+      padding: 6px 6px 0;
       display:flex;
       align-items:center;
       justify-content:center;
-    }
-
-    .titleBlock{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:6px;
-      text-align:center;
     }
 
     h1{
@@ -125,6 +116,7 @@
       font-size: var(--h1);
       font-weight: 950;
       letter-spacing: .35px;
+      text-align:center;
       text-shadow: 0 2px 0 rgba(0,0,0,.35);
     }
 
@@ -134,7 +126,7 @@
       flex-direction:column;
       gap: 12px;
       min-height:0;
-      padding: 6px 6px 0;
+      padding: 0 6px;
     }
 
     .card{
@@ -148,15 +140,16 @@
       min-height: 0;
     }
 
-    /* ✅ Main verse card clickable */
+    /* ✅ Main verse card: centered verse + ref together (no void) */
     .verseCard{
       flex: 1 1 auto;
       display:flex;
       flex-direction:column;
       align-items:center;
+      justify-content:center;
       text-align:center;
       min-height: 0;
-      padding: 18px;
+      padding: 22px;
       cursor:pointer;
       user-select:none;
       transition: transform .08s ease, border-color .2s ease, background .2s ease;
@@ -171,15 +164,13 @@
       box-shadow: 0 0 0 3px rgba(96,165,250,.30), var(--shadow);
     }
 
-    .passageBox{
-      width:100%;
+    .verseGroup{
       max-width: 1080px;
-      flex: 1 1 auto;
-      min-height: 0;
       display:flex;
       flex-direction:column;
+      align-items:center;
       justify-content:center;
-      padding: 6px 6px 6px;
+      gap: 8px; /* ✅ légère interligne entre verset & ref */
     }
 
     .mainLine{
@@ -190,21 +181,40 @@
       color: rgba(238,245,255,.97);
     }
 
-    /* ✅ Ref just under verse with light spacing */
     .ref{
-      flex: 0 0 auto;
-      margin-top: 6px; /* ✅ légère interligne */
+      margin: 0;
       font-weight: 950;
       color: var(--accent2);
       letter-spacing:.2px;
       font-size: var(--ref);
-      text-align:center;
     }
 
+    /* ✅ Full width info card under verse */
+    .infoCard{
+      flex: 0 0 auto;
+      border-radius: var(--r2);
+      padding: 14px 16px;
+      border:1px solid var(--brd);
+      background: rgba(255,255,255,.04);
+      box-shadow: var(--shadowSoft);
+    }
+    .infoText{
+      margin: 0;
+      color: rgba(238,245,255,.92);
+      font-size: clamp(13px, 1.1vw + 8px, 15px);
+      line-height: 1.55;
+      text-align:center;
+    }
+    .infoText strong{
+      color: var(--text);
+      font-weight: 950;
+    }
+
+    /* ✅ Two cards row (TheWord + YouTube) */
     .below{
       flex: 0 0 auto;
       display:grid;
-      grid-template-columns: 1.1fr .9fr;
+      grid-template-columns: 1fr 1fr;
       gap:12px;
       min-height: 0;
     }
@@ -218,6 +228,18 @@
       display:flex;
       flex-direction:column;
       gap:10px;
+      cursor:pointer;
+      user-select:none;
+      transition: transform .08s ease, background .2s ease, border-color .2s ease;
+      outline:none;
+    }
+    .miniCard:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.18);
+    }
+    .miniCard:focus-visible{
+      box-shadow: 0 0 0 3px rgba(96,165,250,.22), var(--shadowSoft);
     }
 
     .miniTitle{
@@ -235,125 +257,61 @@
       line-height: 1.55;
     }
 
-    .jer{
-      font-style: italic;
-      color: rgba(238,245,255,.92);
+    /* ✅ TheWord "button-like" pill centered */
+    .twPillRow{
+      display:flex;
+      justify-content:center;
+      padding-top: 2px;
     }
-
-    /* ✅ Jeremiah card clickable too */
-    .clickCard{
-      cursor:pointer;
-      user-select:none;
-      transition: transform .08s ease, background .2s ease, border-color .2s ease;
-    }
-    .clickCard:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.18);
-    }
-
-    .twActionRow{
-      display:none; /* mobile only */
-      padding-top: 4px;
-    }
-    .twBtn{
+    .twPill{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      text-decoration:none;
-      color: var(--text);
-      font-weight: 950;
-      letter-spacing:.15px;
+      padding: 10px 14px;
       border-radius: 14px;
-      padding: 12px 14px;
-      border:1px solid rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.16);
       background: rgba(255,255,255,.06);
-      transition: transform .08s ease, background .2s ease, border-color .2s ease;
-      width: fit-content;
-      font-size: var(--btnText);
-    }
-    .twBtn:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.09);
-      border-color: rgba(255,255,255,.20);
-    }
-
-    /* Bottom bar */
-    .bottomBar{
-      position:fixed;
-      left:0; right:0;
-      bottom:0;
-      z-index: 5;
-      padding: 10px 12px calc(14px + env(safe-area-inset-bottom));
-      background: linear-gradient(180deg, rgba(5,9,20,0), rgba(5,9,20,.65) 35%, rgba(5,9,20,.92));
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-
-    .bottomInner{
-      margin:0 auto;
-      max-width: 1280px;
-      border:1px solid rgba(255,255,255,.12);
-      border-radius: 18px;
-      background: rgba(11,18,36,.72);
-      box-shadow: 0 14px 40px rgba(0,0,0,.55);
-      padding: 10px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-    }
-
-    .navItem{
-      flex: 1;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      text-decoration:none;
-      color: var(--text);
       font-weight: 950;
       letter-spacing:.15px;
-      border-radius: 14px;
-      padding: 12px 10px;
-      border:1px solid transparent;
-      background: rgba(255,255,255,.04);
-      transition: transform .08s ease, background .2s ease, border-color .2s ease;
-      white-space:nowrap;
-      min-height: 48px;
-      min-width: 0;
+      color: var(--text);
       font-size: var(--btnText);
+      min-width: 150px;
     }
 
-    .navItem:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.07);
-      border-color: rgba(255,255,255,.12);
-    }
-
-    .icon{ width:20px;height:20px; display:inline-block; }
-
-    .label{
-      min-width:0;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      max-width: 100%;
-    }
-
-    .ytWrap{
+    /* ✅ YouTube visual line */
+    .ytRow{
       display:flex;
-      align-items:center;
       justify-content:center;
+      align-items:center;
       gap:10px;
+      padding-top: 2px;
     }
     .ytIcon{
-      width:28px;
-      height:20px;
+      width:34px;
+      height:24px;
       display:block;
     }
+    .ytLabel{
+      font-weight: 950;
+      font-size: var(--btnText);
+      color: var(--text);
+      letter-spacing:.1px;
+    }
 
-    .navDesktop{ display:flex; gap:10px; width:100%; }
-    .navMobile{ display:none; gap:10px; width:100%; }
+    /* ✅ Footer copyright */
+    footer{
+      flex: 0 0 auto;
+      padding: 0 6px 4px;
+      display:flex;
+      justify-content:center;
+    }
+    .copyright{
+      color: rgba(183,198,255,.80);
+      font-size: 12.5px;
+      letter-spacing:.12px;
+      text-align:center;
+      user-select:none;
+    }
 
     @media (max-width: 520px){
       :root{
@@ -361,20 +319,28 @@
         --ref: 14px;
       }
 
+      .card{ padding: 14px; }
+      .verseCard{ padding: 16px; }
+      .verseGroup{ gap: 6px; }
+
       .below{
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* ✅ stack on mobile */
         gap:12px;
       }
 
-      .twActionRow{ display:block; }
-      .miniCard.jerCard{ display:none; }
+      .twPill{
+        min-width: 180px;
+      }
 
-      .navDesktop{ display:none; }
-      .navMobile{ display:flex; }
+      .ytIcon{
+        width:30px;
+        height:22px;
+      }
+    }
 
-      .card{ padding: 14px; }
-      .verseCard{ padding: 14px; }
-      .passageBox{ padding: 4px 4px 4px; }
+    @media (max-height: 780px){
+      .infoCard{ padding: 12px 14px; }
+      .miniCard{ padding: 12px; }
     }
   </style>
 </head>
@@ -386,124 +352,79 @@
   <div class="wrap">
     <div class="container">
       <header>
-        <div class="titleBlock">
-          <h1 id="siteTitle">Chercher Dieu</h1>
-        </div>
+        <h1>Chercher Dieu</h1>
       </header>
 
       <main>
         <!-- ✅ MAIN VERSE (click -> theword.fr) -->
-        <section class="card verseCard" id="mainVerseCard" role="link" tabindex="0" aria-label="Verset principal (ouvrir TheWord)">
-          <div class="passageBox">
+        <section class="card verseCard" id="mainVerseCard" role="link" tabindex="0" aria-label="Verset (ouvrir TheWord)">
+          <div class="verseGroup">
             <p class="mainLine" id="mainVerseText"></p>
+            <p class="ref" id="mainRef"></p>
           </div>
-          <div class="ref" id="mainRef">Jérémie 29:13</div>
         </section>
 
-        <section class="below" aria-label="Informations">
-          <div class="miniCard clickCard" id="twCard" role="link" tabindex="0" aria-label="The Word (ouvrir TheWord)">
-            <p class="miniTitle" id="twTitle">The Word</p>
-            <p class="miniText" id="twText">
-              Bible gratuite 100% hors ligne en 16 langues. Lecture, recherche, notes et études.
-            </p>
+        <!-- ✅ Full width direct/succinct explanation -->
+        <section class="infoCard" aria-label="Informations">
+          <p class="infoText" id="infoText"></p>
+        </section>
 
-            <!-- Mobile: bouton TheWord ici -->
-            <div class="twActionRow">
-              <a class="twBtn" href="https://www.theword.fr" target="_blank" rel="noopener" aria-label="TheWord">
-                TheWord
-              </a>
+        <!-- ✅ TheWord (left) + YouTube (right) -->
+        <section class="below" aria-label="Accès">
+          <!-- The Word clickable card -->
+          <div class="miniCard" id="twCard" role="link" tabindex="0" aria-label="The Word (ouvrir TheWord)">
+            <p class="miniTitle" id="twTitle">The Word</p>
+            <p class="miniText" id="twText"></p>
+
+            <!-- ✅ centered line "TheWord" styled as button -->
+            <div class="twPillRow">
+              <div class="twPill">TheWord</div>
             </div>
           </div>
 
-          <!-- Desktop only (click -> theword.fr) -->
-          <div class="miniCard jerCard clickCard" id="jerCard" role="link" tabindex="0" aria-label="Jérémie 23:29 (ouvrir TheWord)">
-            <p class="miniTitle" id="jerTitle">Jérémie 23:29</p>
-            <p class="miniText jer" id="jerText"></p>
+          <!-- YouTube clickable card -->
+          <div class="miniCard" id="ytCard" role="link" tabindex="0" aria-label="YouTube ChercherDieu">
+            <p class="miniTitle" id="ytTitle">YouTube</p>
+            <p class="miniText" id="ytText"></p>
+
+            <div class="ytRow">
+              <svg class="ytIcon" viewBox="0 0 32 24" aria-hidden="true">
+                <rect x="0" y="2" width="32" height="20" rx="6" fill="var(--yt)"></rect>
+                <polygon points="13,7.5 13,16.5 21,12" fill="#ffffff"></polygon>
+              </svg>
+              <div class="ytLabel">ChercherDieu</div>
+            </div>
           </div>
         </section>
       </main>
+
+      <footer>
+        <div class="copyright" id="copyright"></div>
+      </footer>
     </div>
   </div>
 
-  <nav class="bottomBar" aria-label="Navigation">
-    <div class="bottomInner">
-
-      <!-- Desktop: TheWord / YouTube / Contact -->
-      <div class="navDesktop">
-        <a class="navItem" href="https://www.theword.fr" target="_blank" rel="noopener" aria-label="TheWord">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none">
-            <path d="M7 4.5h9.2c1.5 0 2.8 1.2 2.8 2.8v12.2c0 .6-.5 1.1-1.1 1.1H8.2c-1.6 0-3.2-.7-3.2-2.6V6.6c0-1.3.9-2.1 2-2.1Z" stroke="rgba(255,255,255,.65)" stroke-width="1.4"/>
-            <path d="M8 7h9" stroke="rgba(255,255,255,.42)" stroke-width="1.4" stroke-linecap="round"/>
-            <path d="M8 10h7" stroke="rgba(255,255,255,.42)" stroke-width="1.4" stroke-linecap="round"/>
-          </svg>
-          <span class="label">TheWord</span>
-        </a>
-
-        <a class="navItem" href="https://youtube.com/@chercherdieu?si=5hk5jDcWrvlgVpFT" target="_blank" rel="noopener" aria-label="YouTube ChercherDieu">
-          <span class="ytWrap">
-            <svg class="ytIcon" viewBox="0 0 32 24" aria-hidden="true">
-              <rect x="0" y="2" width="32" height="20" rx="6" fill="var(--yt)"></rect>
-              <polygon points="13,7.5 13,16.5 21,12" fill="#ffffff"></polygon>
-            </svg>
-            <span class="label">YouTube</span>
-          </span>
-        </a>
-
-        <a class="navItem" href="mailto:contact@chercherdieu.com" aria-label="Contact email">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none">
-            <path d="M5.2 7.4h13.6c.9 0 1.6.7 1.6 1.6v8.6c0 .9-.7 1.6-1.6 1.6H5.2c-.9 0-1.6-.7-1.6-1.6V9c0-.9.7-1.6 1.6-1.6Z" stroke="rgba(255,255,255,.65)" stroke-width="1.4"/>
-            <path d="M6 9l6 4.6L18 9" stroke="rgba(255,255,255,.48)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <span class="label">contact@chercherdieu.com</span>
-        </a>
-      </div>
-
-      <!-- Mobile: YouTube + Contact -->
-      <div class="navMobile">
-        <a class="navItem" href="https://youtube.com/@chercherdieu?si=5hk5jDcWrvlgVpFT" target="_blank" rel="noopener" aria-label="YouTube ChercherDieu">
-          <span class="ytWrap">
-            <svg class="ytIcon" viewBox="0 0 32 24" aria-hidden="true">
-              <rect x="0" y="2" width="32" height="20" rx="6" fill="var(--yt)"></rect>
-              <polygon points="13,7.5 13,16.5 21,12" fill="#ffffff"></polygon>
-            </svg>
-            <span class="label">YouTube</span>
-          </span>
-        </a>
-
-        <a class="navItem" href="mailto:contact@chercherdieu.com" aria-label="Contact email">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none">
-            <path d="M5.2 7.4h13.6c.9 0 1.6.7 1.6 1.6v8.6c0 .9-.7 1.6-1.6 1.6H5.2c-.9 0-1.6-.7-1.6-1.6V9c0-.9.7-1.6 1.6-1.6Z" stroke="rgba(255,255,255,.65)" stroke-width="1.4"/>
-            <path d="M6 9l6 4.6L18 9" stroke="rgba(255,255,255,.48)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <span class="label">contact@chercherdieu.com</span>
-        </a>
-      </div>
-
-    </div>
-  </nav>
-
   <script>
     (function(){
-      // ✅ Main verse (Jer 29:13)
+      const THEWORD_URL = "https://www.theword.fr";
+      const YT_URL = "https://youtube.com/@chercherdieu?si=5hk5jDcWrvlgVpFT";
+
       const MAIN_FR = "Vous me chercherez, et vous me trouverez, si vous me cherchez de tout votre cœur.";
       const MAIN_EN = "And ye shall seek me, and find me, when ye shall search for me with all your heart.";
-
-      // ✅ Jeremiah 23:29 (desktop card)
-      const JER23_FR = "Ma parole n’est-elle pas comme un feu, dit l’Éternel, Et comme un marteau qui brise le roc?";
-      const JER23_EN = "Is not my word like as a fire? saith the LORD; and like a hammer that breaketh the rock in pieces?";
-
-      const thewordUrl = "https://www.theword.fr";
 
       const els = {
         mainVerseText: document.getElementById('mainVerseText'),
         mainRef: document.getElementById('mainRef'),
-        twTitle: document.getElementById('twTitle'),
+        infoText: document.getElementById('infoText'),
+
         twText: document.getElementById('twText'),
-        jerTitle: document.getElementById('jerTitle'),
-        jerText: document.getElementById('jerText'),
+        ytText: document.getElementById('ytText'),
+
         mainVerseCard: document.getElementById('mainVerseCard'),
-        jerCard: document.getElementById('jerCard'),
         twCard: document.getElementById('twCard'),
+        ytCard: document.getElementById('ytCard'),
+
+        copyright: document.getElementById('copyright')
       };
 
       function isFrenchLocale(){
@@ -511,17 +432,14 @@
         return lang.startsWith('fr');
       }
 
-      function openTheWord(){
-        window.open(thewordUrl, "_blank", "noopener");
-      }
-
-      function bindCard(el){
+      function bindOpen(el, url){
         if(!el) return;
-        el.addEventListener('click', openTheWord);
+        const open = () => window.open(url, "_blank", "noopener");
+        el.addEventListener('click', open);
         el.addEventListener('keydown', (e) => {
           if(e.key === 'Enter' || e.key === ' '){
             e.preventDefault();
-            openTheWord();
+            open();
           }
         });
       }
@@ -534,30 +452,43 @@
           els.mainVerseText.textContent = MAIN_FR;
           els.mainRef.textContent = "Jérémie 29:13";
 
-          els.twTitle.textContent = "The Word";
-          els.twText.textContent = "Bible gratuite 100% hors ligne en 16 langues. Lecture, recherche, notes et études.";
+          els.infoText.innerHTML =
+            "<strong>Ressources pour chercher Dieu et le trouver :</strong> " +
+            "la Bible sur <strong>TheWord</strong>, et des vidéos sur <strong>YouTube</strong> pour enseigner sa Parole.";
 
-          els.jerTitle.textContent = "Jérémie 23:29";
-          els.jerText.textContent = `« ${JER23_FR} »`;
+          els.twText.textContent =
+            "Bible gratuite 100% hors ligne en 16 langues. Lecture, recherche, notes et études.";
+
+          els.ytText.textContent =
+            "Cours bibliques et enseignements centrés sur la Parole de Dieu.";
         }else{
           document.documentElement.lang = 'en';
           els.mainVerseText.textContent = MAIN_EN;
           els.mainRef.textContent = "Jeremiah 29:13";
 
-          els.twTitle.textContent = "The Word";
-          els.twText.textContent = "Free offline Bible in 16 languages. Reading, search, notes and studies.";
+          els.infoText.innerHTML =
+            "<strong>Resources to seek God and find Him:</strong> " +
+            "the Bible on <strong>TheWord</strong>, and <strong>YouTube</strong> videos that teach His Word.";
 
-          els.jerTitle.textContent = "Jeremiah 23:29";
-          els.jerText.textContent = `“${JER23_EN}”`;
+          els.twText.textContent =
+            "Free offline Bible in 16 languages. Reading, search, notes and studies.";
+
+          els.ytText.textContent =
+            "Bible teaching videos focused on God’s Word.";
         }
+
+        const year = new Date().getFullYear();
+        els.copyright.textContent = "Copyright " + year;
       }
 
-      bindCard(els.mainVerseCard); // ✅ click on main verse => theword.fr
-      bindCard(els.jerCard);       // ✅ click on Jeremiah card => theword.fr
-      bindCard(els.twCard);
+      // ✅ Click behavior
+      bindOpen(els.mainVerseCard, THEWORD_URL);
+      bindOpen(els.twCard, THEWORD_URL);
+      bindOpen(els.ytCard, YT_URL);
 
       render();
     })();
   </script>
 </body>
 </html>
+
