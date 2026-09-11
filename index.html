@@ -151,6 +151,10 @@
     .step-num { display: grid; place-items: center; width: 38px; height: 38px; margin-bottom: 20px; color: white; background: var(--ink); border-radius: 50%; font-weight: 700; }
     .step h3 { margin: 0 0 9px; font-size: 1.1rem; }
     .step p { margin: 0; color: var(--ink-soft); font-size: .95rem; }
+    .discipleship-note { display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: start; margin-top: 22px; padding: 30px; color: white; background: var(--ink); border-radius: 22px; }
+    .discipleship-note .step-num { margin: 0; color: var(--ink); background: var(--gold-soft); }
+    .discipleship-note h3 { margin: 0 0 8px; font-family: var(--serif); font-size: 1.65rem; }
+    .discipleship-note p { margin: 0; color: #d8e5ee; }
 
     .bible { padding: 110px 0; }
     .bible-card { display: grid; grid-template-columns: 1fr auto; gap: 42px; align-items: center; padding: 48px; background: linear-gradient(135deg, var(--sky), #f8fcfe); border: 1px solid var(--sky-strong); border-radius: 32px; }
@@ -178,6 +182,7 @@
     .closing p { color: var(--ink-soft); font-size: 1.1rem; }
     footer { padding: 34px 0; color: var(--ink-soft); border-top: 1px solid var(--line); }
     .footer-row { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .footer-links { display: flex; align-items: center; gap: 24px; }
     footer p { margin: 0; font-size: .9rem; }
     footer a { font-weight: 700; text-decoration: none; }
 
@@ -216,6 +221,7 @@
       .gospel-item h3 { margin-top: 24px; }
       .response { grid-template-columns: 1fr; padding: 28px 24px; }
       .footer-row { align-items: flex-start; flex-direction: column; }
+      .footer-links { width: 100%; justify-content: space-between; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -309,6 +315,13 @@
           <article class="step"><span class="step-num">2</span><h3>Regardez à Jésus</h3><p>Lisez un Évangile, par exemple celui de Jean. Observez ce que Jésus dit, ce qu’il fait et ce qu’il révèle de Dieu.</p></article>
           <article class="step"><span class="step-num">3</span><h3>Croyez et suivez-le</h3><p>Recevez son pardon, détournez-vous du péché et confiez-lui votre vie. Apprenez ensuite à marcher avec lui chaque jour.</p></article>
         </div>
+        <aside class="discipleship-note" aria-label="La suite du chemin avec Jésus">
+          <span class="step-num">4</span>
+          <div>
+            <h3>Ne restez pas seul</h3>
+            <p>Croire en Jésus n’est pas simplement accepter une idée puis continuer sa route seul. Jésus appelle à devenir son disciple. Prenez contact avec un disciple de Jésus ou une assemblée fidèle à la Bible pour parler de votre démarche, comprendre les Écritures, apprendre à suivre Jésus et vous préparer au baptême, une étape essentielle d’obéissance.</p>
+          </div>
+        </aside>
       </div>
     </section>
 
@@ -355,7 +368,7 @@
       <div class="shell closing-inner">
         <p class="eyebrow">Pour aller plus loin</p>
         <h2>Continuez votre recherche</h2>
-        <p>Lisez la Bible sur The Word et retrouvez les vidéos de la chaîne ChercherDieu pour avancer, une question après l’autre.</p>
+        <p>Lisez la Bible sur The Word, retrouvez les vidéos de la chaîne ChercherDieu et échangez avec un disciple de Jésus. La foi se vit en suivant Jésus, en comprenant sa Parole et en avançant vers le baptême.</p>
         <div class="actions" style="justify-content:center; margin-top:30px">
           <a class="button button-primary" href="https://theword.fr/" target="_blank" rel="noopener"><img class="theword-logo" src="theword-icon.png" alt="">The Word</a>
           <a class="button button-secondary" href="https://www.youtube.com/@ChercherDieu" target="_blank" rel="noopener">Chaîne YouTube <span aria-hidden="true">↗</span></a>
@@ -367,7 +380,10 @@
   <footer>
     <div class="shell footer-row">
       <p>© <span id="copyright-year">2026</span> Chercher Dieu — La Bible comme référence.</p>
-      <a href="#accueil">Revenir en haut ↑</a>
+      <div class="footer-links">
+        <a href="mailto:contact@chercherdieu.com">contact@chercherdieu.com</a>
+        <a href="#accueil">Revenir en haut ↑</a>
+      </div>
     </div>
   </footer>
   <script>
