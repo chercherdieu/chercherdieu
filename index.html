@@ -186,54 +186,6 @@
     footer p { margin: 0; font-size: .9rem; }
     footer a { font-weight: 700; text-decoration: none; }
 
-    .cookie-settings {
-      padding: 0;
-      color: inherit;
-      background: none;
-      border: 0;
-      font: inherit;
-      font-weight: 700;
-      cursor: pointer;
-    }
-    .cookie-settings:hover { text-decoration: underline; }
-    .cookie-banner {
-      position: fixed;
-      z-index: 50;
-      right: 20px;
-      bottom: 20px;
-      width: min(440px, calc(100% - 40px));
-      padding: 22px;
-      color: var(--ink);
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      box-shadow: var(--shadow);
-    }
-    .cookie-banner[hidden] { display: none; }
-    .cookie-banner h2 {
-      margin: 0 0 8px;
-      font-family: var(--sans);
-      font-size: 1.1rem;
-      letter-spacing: 0;
-    }
-    .cookie-banner p {
-      margin: 0;
-      color: var(--ink-soft);
-      font-size: .92rem;
-      line-height: 1.55;
-    }
-    .cookie-actions { display: flex; gap: 10px; margin-top: 18px; }
-    .cookie-actions button {
-      min-height: 44px;
-      padding: 0 18px;
-      border: 1px solid var(--ink);
-      border-radius: 999px;
-      font: inherit;
-      font-weight: 700;
-      cursor: pointer;
-    }
-    .cookie-reject { color: var(--ink); background: var(--paper); }
-    .cookie-accept { color: white; background: var(--ink); }
 
     @media (max-width: 900px) {
       .nav-links a:not(.nav-cta) { display: none; }
@@ -431,73 +383,12 @@
       <p>© <span id="copyright-year">2026</span> Chercher Dieu — La Bible comme référence.</p>
       <div class="footer-links">
         <a href="mailto:contact@chercherdieu.com">contact@chercherdieu.com</a>
-        <button class="cookie-settings" id="analytics-settings" type="button">Confidentialité</button>
         <a href="#accueil">Revenir en haut ↑</a>
       </div>
     </div>
   </footer>
-  <aside class="cookie-banner" id="analytics-consent" role="dialog" aria-labelledby="analytics-consent-title" aria-describedby="analytics-consent-text" hidden>
-    <h2 id="analytics-consent-title">Mesure d’audience</h2>
-    <p id="analytics-consent-text">Nous utilisons Google Analytics pour comprendre la fréquentation du site. Vous pouvez accepter ou refuser cette mesure.</p>
-    <div class="cookie-actions">
-      <button class="cookie-reject" id="analytics-reject" type="button">Refuser</button>
-      <button class="cookie-accept" id="analytics-accept" type="button">Accepter</button>
-    </div>
-  </aside>
   <script>
     document.getElementById('copyright-year').textContent = new Date().getFullYear();
-
-    const analyticsId = 'G-M3FE7B81DJ';
-    const consentKey = 'chercherdieu-analytics-consent';
-    const consentBanner = document.getElementById('analytics-consent');
-    let analyticsLoaded = false;
-
-    function readConsent() {
-      try { return localStorage.getItem(consentKey); }
-      catch (error) { return null; }
-    }
-
-    function saveConsent(value) {
-      try { localStorage.setItem(consentKey, value); }
-      catch (error) { /* Le choix reste valable pour la visite en cours. */ }
-    }
-
-    function loadAnalytics() {
-      if (analyticsLoaded) return;
-      analyticsLoaded = true;
-      window.dataLayer = window.dataLayer || [];
-      window.gtag = function () { dataLayer.push(arguments); };
-      gtag('js', new Date());
-      gtag('config', analyticsId);
-
-      const googleTag = document.createElement('script');
-      googleTag.async = true;
-      googleTag.src = 'https://www.googletagmanager.com/gtag/js?id=' + analyticsId;
-      document.head.appendChild(googleTag);
-    }
-
-    function closeConsent() {
-      consentBanner.hidden = true;
-    }
-
-    document.getElementById('analytics-accept').addEventListener('click', function () {
-      saveConsent('granted');
-      closeConsent();
-      loadAnalytics();
-    });
-
-    document.getElementById('analytics-reject').addEventListener('click', function () {
-      saveConsent('denied');
-      closeConsent();
-    });
-
-    document.getElementById('analytics-settings').addEventListener('click', function () {
-      consentBanner.hidden = false;
-      document.getElementById('analytics-accept').focus();
-    });
-
-    if (readConsent() === 'granted') loadAnalytics();
-    else if (readConsent() !== 'denied') consentBanner.hidden = false;
   </script>
 </body>
 </html>
