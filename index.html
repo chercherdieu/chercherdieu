@@ -185,6 +185,9 @@
     .footer-links { display: flex; align-items: center; gap: 24px; }
     footer p { margin: 0; font-size: .9rem; }
     footer a { font-weight: 700; text-decoration: none; }
+    .visitor-counter { margin-top: 22px; text-align: center; opacity: .48; transition: opacity .2s ease; }
+    .visitor-counter:hover, .visitor-counter:focus-within { opacity: .85; }
+    .visitor-counter img { height: 20px; max-width: 100%; vertical-align: middle; }
 
 
     @media (max-width: 900px) {
@@ -385,6 +388,11 @@
         <a href="mailto:contact@chercherdieu.com">contact@chercherdieu.com</a>
         <a href="#accueil">Revenir en haut ↑</a>
       </div>
+    </div>
+    <div class="shell visitor-counter" aria-label="Compteur de visites">
+      <a href="https://hits.sh/www.chercherdieu.com/" target="_blank" rel="noopener">
+        <img alt="Visites" src="https://hits.sh/www.chercherdieu.com.svg?label=visites&style=flat&color=dddddd&labelColor=f5f5f5">
+      </a>
     </div>
   </footer>
   <script>
