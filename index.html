@@ -181,13 +181,56 @@
     .closing h2 { margin-top: 0; }
     .closing p { color: var(--ink-soft); font-size: 1.1rem; }
     footer { padding: 34px 0; color: var(--ink-soft); border-top: 1px solid var(--line); }
-    .footer-row { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
-    .footer-links { display: flex; align-items: center; gap: 24px; }
+    .footer-row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; }
+    .footer-links { display: flex; align-items: center; justify-content: flex-end; gap: 24px; }
     footer p { margin: 0; font-size: .9rem; }
     footer a { font-weight: 700; text-decoration: none; }
+    .privacy-link {
+      padding: 0;
+      color: inherit;
+      background: none;
+      border: 0;
+      font: inherit;
+      font-size: .9rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    footer a:hover, .privacy-link:hover { color: var(--ink); }
     .visitor-counter { margin-top: 22px; text-align: center; opacity: .48; transition: opacity .2s ease; }
     .visitor-counter:hover, .visitor-counter:focus-within { opacity: .85; }
     .visitor-counter img { height: 20px; max-width: 100%; vertical-align: middle; }
+    .privacy-dialog {
+      width: min(560px, calc(100% - 32px));
+      padding: 0;
+      color: var(--ink);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+    .privacy-dialog::backdrop { background: rgba(16, 42, 67, .35); backdrop-filter: blur(3px); }
+    .privacy-dialog__content { position: relative; padding: 30px; }
+    .privacy-dialog h2 { margin: 0 42px 18px 0; font-size: 2rem; line-height: 1.05; letter-spacing: 0; }
+    .privacy-dialog p { margin: 0 0 14px; color: var(--ink-soft); font-size: .96rem; }
+    .privacy-dialog p:last-child { margin-bottom: 0; }
+    .privacy-dialog a { color: var(--ink); font-weight: 700; }
+    .privacy-dialog__close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      color: var(--ink);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.35rem;
+      line-height: 1;
+    }
+    .privacy-dialog__close:hover { background: var(--sky); }
 
 
     @media (max-width: 900px) {
@@ -224,8 +267,10 @@
       .gospel-item:last-child { border-bottom: 0; }
       .gospel-item h3 { margin-top: 24px; }
       .response { grid-template-columns: 1fr; padding: 28px 24px; }
-      .footer-row { align-items: flex-start; flex-direction: column; }
+      .footer-row { display: flex; align-items: flex-start; flex-direction: column; }
       .footer-links { width: 100%; justify-content: space-between; }
+      .privacy-dialog__content { padding: 26px 22px; }
+      .privacy-dialog h2 { font-size: 1.72rem; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -384,6 +429,7 @@
   <footer>
     <div class="shell footer-row">
       <p>© <span id="copyright-year">2026</span> Chercher Dieu — La Bible comme référence.</p>
+      <button class="privacy-link" type="button" data-open-privacy>Politique de confidentialité</button>
       <div class="footer-links">
         <a href="mailto:contact@chercherdieu.com">contact@chercherdieu.com</a>
         <a href="#accueil">Revenir en haut ↑</a>
@@ -395,8 +441,47 @@
       </a>
     </div>
   </footer>
+
+  <dialog class="privacy-dialog" id="privacy-dialog" aria-labelledby="privacy-title">
+    <div class="privacy-dialog__content">
+      <button class="privacy-dialog__close" type="button" data-close-privacy aria-label="Fermer la politique de confidentialité">×</button>
+      <h2 id="privacy-title">Politique de confidentialité</h2>
+      <p>Ce site ne dépose pas de cookie publicitaire et n’utilise pas Google Analytics.</p>
+      <p>Un compteur de visites simple fourni par Hits.sh est affiché en bas de page afin d’estimer le nombre de consultations. Il sert uniquement à connaître l’audience générale du site, sans finalité publicitaire.</p>
+      <p>Aucune inscription n’est demandée sur ce site et aucune donnée n’est utilisée pour suivre les visiteurs à des fins commerciales.</p>
+      <p>Pour toute question, vous pouvez écrire à <a href="mailto:contact@chercherdieu.com">contact@chercherdieu.com</a>.</p>
+    </div>
+  </dialog>
+
   <script>
     document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+    var privacyDialog = document.getElementById('privacy-dialog');
+    var privacyOpen = document.querySelector('[data-open-privacy]');
+    var privacyClose = document.querySelector('[data-close-privacy]');
+
+    if (privacyDialog && privacyOpen && privacyClose) {
+      function closePrivacyDialog() {
+        if (typeof privacyDialog.close === 'function') {
+          privacyDialog.close();
+        } else {
+          privacyDialog.removeAttribute('open');
+        }
+      }
+
+      privacyOpen.addEventListener('click', function () {
+        if (typeof privacyDialog.showModal === 'function') {
+          privacyDialog.showModal();
+        } else {
+          privacyDialog.setAttribute('open', '');
+        }
+      });
+
+      privacyClose.addEventListener('click', closePrivacyDialog);
+      privacyDialog.addEventListener('click', function (event) {
+        if (event.target === privacyDialog) closePrivacyDialog();
+      });
+    }
   </script>
 </body>
 </html>
