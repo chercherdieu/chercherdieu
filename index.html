@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#122d60">
+  <meta name="theme-color" content="#304a64">
   <meta name="description" content="Découvrir Dieu à travers Jésus-Christ, simplement, avec la Bible comme référence.">
   <title>Chercher Dieu — Découvrir Dieu à travers Jésus-Christ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23102a43'/%3E%3Cpath d='M16 17c7 0 12 2 16 6 4-4 9-6 16-6v31c-7 0-12 2-16 6-4-4-9-6-16-6V17Z' fill='none' stroke='%23f5c97a' stroke-width='4' stroke-linejoin='round'/%3E%3Cpath d='M32 23v31' stroke='%23f5c97a' stroke-width='4'/%3E%3C/svg%3E">
   <style>
-:root{--ink:#122d60;--ink-soft:#536781;--paper:#f8faff;--sky:#eaf2ff;--sky-strong:#cddfff;--cream:#eef4ff;--gold:#2260d9;--gold-soft:#a8d9ff;--line:rgba(18,45,96,.15);--serif:'Outfit',system-ui,sans-serif;--sans:'Manrope',system-ui,sans-serif}
+:root{--ink:#122d60;--ink-soft:#536781;--paper:#f8faff;--sky:#eaf2ff;--sky-strong:#cddfff;--cream:#eef4ff;--gold:#2260d9;--gold-soft:#a8d9ff;--line:rgba(18,45,96,.15);--serif:'Inter',system-ui,sans-serif;--sans:'Inter',system-ui,sans-serif}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:400 1rem/1.75 var(--sans);-webkit-font-smoothing:antialiased}a{color:inherit;text-underline-offset:4px}a:hover{text-decoration-thickness:2px}a:focus-visible,button:focus-visible{outline:3px solid #367af0;outline-offset:5px}.shell{width:min(1160px,calc(100% - 64px));margin-inline:auto}section{scroll-margin-top:100px}.skip-link{position:fixed;top:-80px;left:20px;z-index:50;padding:12px;background:white}.skip-link:focus{top:12px}
 .site-header{position:sticky;top:0;z-index:20;background:rgba(248,250,255,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(16px)}.nav{min-height:84px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:inline-flex;align-items:center;gap:12px;font-size:1.1rem;font-weight:700;letter-spacing:-.04em;text-decoration:none}.brand-mark{display:grid;place-items:center;width:39px;height:39px;border:1px solid var(--line);border-radius:12px;background:var(--ink);color:var(--gold-soft)}.brand-mark svg{width:23px;height:23px}.nav-links{display:flex;align-items:center;gap:30px}.nav-links a{font-size:.85rem;font-weight:600;text-decoration:none}.nav-cta{background:var(--ink);color:white;padding:11px 20px;border-radius:8px}
 .hero{position:relative;overflow:hidden;padding:96px 0 100px;background:radial-gradient(ellipse at 95% 10%,#c9ddff 0,transparent 50%),var(--paper)}.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:90px;align-items:center}.eyebrow,.section-number{display:block;color:var(--gold);font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase}.eyebrow{margin:0 0 24px}h1,h2,h3{line-height:1.12;letter-spacing:-.045em}h1{margin:0;font-size:clamp(4rem,7.6vw,7rem);font-weight:500;line-height:1.02}h1 em{font-family:var(--serif);font-weight:500}.hero-lead{font-size:1.12rem;color:var(--ink-soft);max-width:530px;margin:30px 0}.actions{display:flex;gap:12px;flex-wrap:wrap}.button{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:12px 22px;border:1px solid var(--ink);border-radius:8px;font-weight:600;font-size:.9rem;text-decoration:none;transition:background .2s,transform .2s}.button:hover{transform:translateY(-2px)}.button-primary{background:var(--ink);color:white}.button-secondary{background:transparent;color:var(--ink);border-color:var(--line)}.button-secondary:hover{background:var(--sky)}.theword-logo{width:27px;height:27px;border-radius:7px;flex-shrink:0}
@@ -28,58 +28,65 @@ footer{padding:32px 0;background:var(--cream);border-top:1px solid var(--line);c
 @media(max-width:380px){.shell{width:calc(100% - 30px)}.brand-mark{display:none}.gospel-flow{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
 
-/* Blue visual refresh */
-:root{--display:'Outfit',system-ui,sans-serif}
-h1,h2,h3,.brand{font-family:var(--display)}
-h1,h2{font-weight:600;letter-spacing:-.045em}
-.site-header{background:rgba(248,250,255,.94)}
-.brand{font-size:1.3rem;font-weight:600;letter-spacing:-.025em}
-.brand-mark{background:linear-gradient(145deg,#388aff,#1752cd);border:0;color:white;box-shadow:0 5px 15px #2563eb26}
-.nav-cta{background:#235fdf;box-shadow:0 5px 15px #2563eb20}
-.hero{padding:96px 0 108px;background:radial-gradient(ellipse at 88% 18%,#b7dcff 0,transparent 44%),radial-gradient(ellipse at 4% 95%,#dce9ff 0,transparent 50%),#f3f7ff}
-.hero:before{content:'';position:absolute;width:520px;height:520px;right:-190px;top:-270px;border:1px solid #8fb7f366;border-radius:50%;box-shadow:0 0 0 65px #90bdf014,0 0 0 130px #90bdf012;pointer-events:none}
-.hero-grid{position:relative;grid-template-columns:1.12fr .88fr;gap:76px}
-.hero .eyebrow{display:inline-block;padding:7px 13px;border:1px solid #bdd3fa;border-radius:999px;background:#ffffffaa;color:#2257b7;font-size:.7rem;letter-spacing:.1em}
-h1{font-size:clamp(4.5rem,8.4vw,8rem);line-height:.98}
-h1 em{font-family:var(--display);font-style:normal;font-weight:600;color:#2365e8;background:linear-gradient(110deg,#1749d4,#2499e7);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero-lead{font-size:1.15rem}
-.button{border-radius:12px;min-height:54px;padding:13px 23px;font-weight:700}
-.button-primary{background:#235fdf;border-color:#235fdf;box-shadow:0 8px 22px #2463df22}
-.button-primary:hover{background:#184fc8;border-color:#184fc8}
-.button-secondary{background:#ffffffb3;border-color:#c5d8f5}
-.hero-note{min-height:410px;justify-content:center;border-radius:30px;padding:52px 40px;background:radial-gradient(circle at 100% 0%,#4999ef 0,transparent 50%),linear-gradient(145deg,#286de6,#102f80);box-shadow:0 26px 65px #205cc52b;transform:rotate(2deg)}
-.hero-note:before{inset:auto;top:-100px;right:-150px;width:380px;height:380px;border:1px solid #ffffff26;border-radius:50%;box-shadow:0 0 0 48px #ffffff06,0 0 0 96px #ffffff05}
-.hero-note blockquote{font-family:var(--display);font-size:2.15rem;line-height:1.32;font-weight:500;letter-spacing:-.025em}
-.hero-note .reference{color:#d9edff}
-.section-number{display:inline-flex;align-items:center;justify-content:center;min-width:38px;height:32px;padding:0 10px;background:#e5eeff;border:1px solid #c5d9ff;border-radius:9px;font-size:.74rem;letter-spacing:.05em}
-h2{font-size:clamp(2.4rem,4.2vw,3.7rem)}
-.verse{padding:26px 28px;background:#edf4ff;border:1px solid #d6e5fc;border-left:4px solid #3976eb;border-radius:0 16px 16px 0}
-.verse blockquote{font-family:var(--display);font-size:1.48rem;font-weight:400}
-.jesus{background:radial-gradient(ellipse at 0% 0%,#2051a1 0,transparent 65%),#10254e}
-.jesus .section-number{background:#ffffff14;border-color:#ffffff30;color:#bedfff}
-.jesus .verse{background:#ffffff09;border-color:#ffffff23;border-left-color:#70b5ff}
-.truth{padding:22px 18px;border:1px solid #ffffff22;border-radius:14px;background:#ffffff07}
-.truth strong{color:#96cdff}
-.step{border-color:#d4e2f7;border-radius:20px;box-shadow:0 9px 24px #163e7010;padding:32px}
-.step-num{border:0;background:#e8f0ff;color:#235fdf;font-weight:800;border-radius:11px}
-.step h3{font-size:1.25rem;font-weight:600}
-.discipleship-note{border-color:#ccdafa}
-.bible-card{background:linear-gradient(120deg,#e6efff,#f4f9ff);border-color:#c8ddff;border-radius:25px}
-.book-icon{background:linear-gradient(150deg,#3d8aff,#2453c4);color:#ffffff;border-radius:22px;transform:rotate(5deg);box-shadow:0 16px 30px #2463df25}
-.gospel-flow{gap:18px}
-.gospel-item{background:white;border:1px solid #d7e3f7;border-radius:18px;padding:26px 23px}
-.gospel-item>span{font-weight:800;color:#2365df}
-.gospel-item h3{font-family:var(--display);font-weight:600;font-size:1.25rem;margin-top:25px}
-.response{background:linear-gradient(120deg,#143879,#1c55b6);border-radius:20px}
-.response h3{font-family:var(--display);font-size:1.5rem}
-.response .button{background:#fff;color:#1b4aa4;border-color:#fff}
-.closing h2{color:#194cac}
-.android-card{background:radial-gradient(ellipse at 95% 0%,#307ddb 0,transparent 60%),linear-gradient(120deg,#123579,#154eb8);border-radius:26px;box-shadow:0 16px 45px #235fdf20}
-.android-card h2{font-family:var(--display);font-weight:500}
-.android-card .eyebrow{color:#c1e1ff}
-.android-qr span{color:#e3f0ff}
-@media(max-width:1000px){.hero-grid{gap:40px}.hero-note{padding:38px 30px;min-height:380px}.hero-note blockquote{font-size:1.8rem}.gospel-flow{gap:18px}}
-@media(max-width:700px){.hero{padding:56px 0 64px}.hero-grid{grid-template-columns:1fr;gap:36px}.brand{font-size:1.15rem}.hero .eyebrow{font-size:.65rem}h1{font-size:clamp(4.3rem,18vw,6.8rem)}h2{font-size:2.5rem}.hero-lead{font-size:1.07rem}.hero-note{min-height:280px;border-radius:23px;padding:32px;transform:none}.hero-note blockquote{font-size:1.8rem}.hero-note:before{inset:auto;top:-190px;right:-190px;border-radius:50%}.verse{padding:22px 20px}.verse blockquote{font-size:1.35rem}.gospel-flow{grid-template-columns:1fr}.gospel-item{padding:25px}.gospel-item h3{margin-top:18px}.android-card{padding:28px;border-radius:22px}.button{padding:12px 19px}.bible-card{padding:28px}.step{padding:27px}}
+
+/* Restrained blue editorial design */
+:root{--ink:#243b53;--ink-soft:#536475;--paper:#fafbfc;--sky:#edf1f5;--sky-strong:#d3dce5;--cream:#f0f3f6;--gold:#526d88;--gold-soft:#ccd9e5;--line:rgba(36,59,83,.16);--sans:'Inter',system-ui,sans-serif;--serif:var(--sans)}
+body{font-size:1rem;line-height:1.8}
+h1,h2,h3,blockquote,.brand{font-family:var(--sans)}
+h1,h2,h3{font-weight:600;letter-spacing:-.035em}
+.site-header{background:rgba(250,251,252,.97)}
+.brand{font-size:1.08rem;letter-spacing:-.03em}.brand-mark{background:#2d4761;color:#e5edf4;border-radius:5px}
+.nav-cta{background:#344f6b;border-radius:4px}
+.hero{padding:90px 0;background:#edf2f6;border-bottom:1px solid var(--line)}
+.hero-grid{grid-template-columns:1.2fr .8fr;gap:72px}
+.hero .eyebrow{font-size:.71rem;letter-spacing:.12em;color:#506b85}
+h1{font-size:clamp(3.3rem,5.9vw,5.8rem);line-height:1.09;max-width:750px}
+h1 em{font-family:var(--sans);font-style:normal;font-weight:600;color:#56748f}
+.hero-lead{font-size:1.13rem;color:#465d72;max-width:610px;margin:28px 0}
+.hero-lead strong{font-weight:600;color:var(--ink)}
+.button{border-radius:4px;font-size:.86rem;min-height:50px;box-shadow:none}
+.button:hover{transform:none}
+.button-primary{background:#344f6b;border-color:#344f6b}
+.button-primary:hover,.nav-cta:hover{background:#263e55}
+.button-secondary{background:transparent;border-color:#bccbd8}
+.button-secondary:hover{background:#e2eaf1}
+.hero-note{min-height:0;align-self:stretch;justify-content:center;padding:38px 34px;border-radius:6px;background:#304a64;color:#fff;box-shadow:none;transform:none}
+.hero-note:before{display:none}
+.hero-note blockquote{font:500 1.8rem/1.5 var(--sans);letter-spacing:-.025em}
+.hero-note .reference{color:#d7e3ee}
+.hero-note .note-label{font-size:.67rem;letter-spacing:.15em;text-transform:uppercase;color:#c8d6e3;margin:0 0 22px;font-weight:600}
+.hero-note .note-context{font-size:.9rem;line-height:1.8;color:#d6e1eb;margin:25px 0 0;border-top:1px solid #ffffff30;padding-top:22px}
+h2{font-size:clamp(2.1rem,3.5vw,3.1rem);line-height:1.17}
+.section-number{font-size:.73rem;letter-spacing:.08em;color:#637f99}
+.verse{border-color:#7c96ad}
+.verse blockquote{font:400 1.3rem/1.65 var(--sans)}
+.jesus{background:#273e55}
+.jesus .lead,.jesus .reference{color:#cdd9e3}
+.jesus .text>p,.truth p{color:#e0e7ee}
+.truth strong{color:#cfdeeb}
+.truth{border-color:#718599}
+.jesus .verse{border-color:#a1b5c7}
+.step{border-radius:6px;box-shadow:none}
+.step-num{border-radius:4px;background:#e8eef3;color:#395773}
+.step h3{font-size:1.1rem}
+.bible-card{background:#edf2f6;border-color:#d0dce6;border-radius:6px}
+.book-icon{background:#3b5873;border-radius:7px;color:#e0eaf2;transform:none;box-shadow:none}
+.gospel{background:#f0f3f6}
+.gospel-item h3{font-size:1.12rem}
+.gospel-item>span{color:#657f97}
+.response{background:#304a64;border-radius:6px}
+.response h3{font:500 1.27rem/1.65 var(--sans)}
+.response .button{background:#e2ebf3;color:#243b53;border-color:#e2ebf3}
+.closing{background:#fafbfc}.closing-inner{max-width:800px}.closing h2{font-size:clamp(2.3rem,4.4vw,3.8rem)}
+.closing-verse{font-size:1.2rem;font-weight:500;color:#344f6b;margin:28px 0 10px}
+.closing .reference{display:block;margin-bottom:28px}
+.android-card{background:#304a64;border-radius:7px;box-shadow:none}
+.android-card h2{font-size:1.75rem;font-weight:500}
+.android-card .eyebrow{color:#c8d9e7}
+.android-card p,.android-qr{color:#e1e9f0}
+footer{background:#eef2f5}
+@media(max-width:1000px){.hero-grid{gap:38px}.hero-note{padding:30px}.hero-note blockquote{font-size:1.55rem}}
+@media(max-width:700px){.hero{padding:50px 0}.hero-grid{grid-template-columns:1fr;gap:32px}h1{font-size:clamp(2.9rem,10.7vw,4.5rem)}h2{font-size:2.15rem}.hero-lead{font-size:1.03rem}.hero-note{border-radius:6px;padding:29px;min-height:0}.hero-note blockquote{font-size:1.5rem}.hero-note .note-label{margin-bottom:18px}.hero-note .note-context{margin-top:20px;padding-top:18px}.verse blockquote{font-size:1.2rem}.bible-card{border-radius:6px}.response h3{font-size:1.17rem}.android-card{border-radius:6px}.closing-verse{font-size:1.08rem}}
 
 </style>
 </head>
@@ -105,17 +112,19 @@ h2{font-size:clamp(2.4rem,4.2vw,3.7rem)}
     <section class="hero" id="accueil">
       <div class="shell hero-grid">
         <div>
-          <p class="eyebrow">Une invitation à découvrir</p>
-          <h1>Chercher<br><em>Dieu.</em></h1>
-          <p class="hero-lead">Dieu n’est pas loin. Il s’est fait connaître à travers Jésus-Christ et nous invite à le chercher avec un cœur sincère.</p>
+          <p class="eyebrow">Connaître Dieu. Comprendre. Répondre.</p>
+          <h1>Chercher Dieu.<br><em>Répondre à son appel.</em></h1>
+          <p class="hero-lead">Jésus-Christ, le Fils de Dieu, est venu nous faire connaître le Père. Il est mort pour nos péchés et il est ressuscité. <strong>Son appel nous concerne aujourd’hui.</strong> Prenez le temps de découvrir ce qu’il dit, et ce que cela change pour votre vie.</p>
           <div class="actions">
-            <a class="button button-primary" href="#commencer">Commencer ici</a>
+            <a class="button button-primary" href="#jesus">Découvrir qui est Jésus</a>
             <a class="button button-secondary" href="https://theword.fr/" target="_blank" rel="noopener"><img class="theword-logo" src="theword-icon.png" alt="">Ouvrir la Bible</a>
           </div>
         </div>
         <aside class="hero-note" aria-label="Verset biblique">
-          <blockquote>« Vous me chercherez, et vous me trouverez, si vous me cherchez de tout votre cœur. »</blockquote>
-          <div class="reference"><a href="https://theword.fr/?b=Jeremiah&amp;c=29&amp;v=13#reading" target="_blank" rel="noopener">Jérémie 29:13</a></div>
+          <p class="note-label">Un appel à prendre au sérieux</p>
+          <blockquote>« Cherchez l’Éternel pendant qu’il se trouve ; invoquez-le, tandis qu’il est près. »</blockquote>
+          <div class="reference"><a href="https://theword.fr/?b=Isaiah&amp;c=55&amp;v=6#reading" target="_blank" rel="noopener">Ésaïe 55:6</a></div>
+          <p class="note-context">Vous avez des questions, des doutes, une histoire. Ouvrez les Écritures. Examinez ce que Jésus enseigne. Ne remettez pas cette recherche à plus tard.</p>
         </aside>
       </div>
     </section>
@@ -129,7 +138,7 @@ h2{font-size:clamp(2.4rem,4.2vw,3.7rem)}
         </div>
         <div class="text">
           <p>La Bible présente Dieu comme notre Créateur, celui qui nous connaît et qui nous aime. Notre soif de sens, de vérité, de justice et d’amour n’est pas un hasard : nous avons été créés pour vivre en relation avec lui.</p>
-          <p>Chercher Dieu ne demande pas de tout comprendre d’abord. Cela commence par une démarche honnête : lui parler, ouvrir la Bible, regarder à Jésus et accepter d’être éclairé.</p>
+          <p>Pourquoi Jésus a-t-il donné sa vie ? De quoi avons-nous besoin d’être sauvés ? Que signifie le suivre ? La Bible aborde ces questions directement. Chercher Dieu commence par une démarche honnête : lire, examiner et accepter que sa Parole nous remette en question.</p>
           <div class="verse">
             <blockquote>« Il a voulu qu’ils cherchent le Seigneur, et qu’ils s’efforcent de le trouver en tâtonnant, bien qu’il ne soit pas loin de chacun de nous. »</blockquote>
             <div class="reference"><a href="https://theword.fr/?b=Acts&amp;c=17&amp;v=27#reading" target="_blank" rel="noopener">Actes 17:27</a></div>
@@ -164,7 +173,7 @@ h2{font-size:clamp(2.4rem,4.2vw,3.7rem)}
       <div class="shell">
         <span class="section-number">03</span>
         <h2>Comment connaître Dieu&nbsp;?</h2>
-        <p class="lead" style="max-width:720px">La foi chrétienne est une relation vivante avec Dieu, rendue possible par Jésus-Christ. Voici un chemin simple pour commencer.</p>
+        <p class="lead" style="max-width:720px">Connaître Dieu engage notre vie. Jésus appelle à croire en lui, à se détourner du péché et à mettre ses paroles en pratique. Voici comment commencer.</p>
         <div class="steps">
           <article class="step"><span class="step-num">1</span><h3>Venez tel que vous êtes</h3><p>Parlez à Dieu avec vos propres mots. Dites-lui vos questions, vos doutes, vos fautes et votre désir de le connaître.</p></article>
           <article class="step"><span class="step-num">2</span><h3>Regardez à Jésus</h3><p>Lisez un Évangile, par exemple celui de Jean. Observez ce que Jésus dit, ce qu’il fait et ce qu’il révèle de Dieu.</p></article>
@@ -221,11 +230,13 @@ h2{font-size:clamp(2.4rem,4.2vw,3.7rem)}
 
     <section class="closing">
       <div class="shell closing-inner">
-        <p class="eyebrow">Pour aller plus loin</p>
-        <h2>Continuez votre recherche</h2>
-        <p>Lisez la Bible sur The Word, retrouvez les vidéos de la chaîne ChercherDieu et échangez avec un disciple de Jésus. La foi se vit en suivant Jésus, en comprenant sa Parole et en avançant vers le baptême.</p>
+        <p class="eyebrow">Aujourd’hui, faites un premier pas</p>
+        <h2>Ne laissez pas cet appel<br>sans réponse.</h2>
+        <blockquote class="closing-verse">« Aujourd’hui, si vous entendez sa voix, n’endurcissez pas vos cœurs »</blockquote>
+        <a class="reference" href="https://theword.fr/?b=Hebrews&amp;c=3&amp;v=15#reading" target="_blank" rel="noopener">Hébreux 3:15 — extrait</a>
+        <p>Commencez par l’Évangile de Jean. Découvrez qui est Jésus, écoutez ses paroles et prenez au sérieux son appel à changer de vie. Pour en parler, vous pouvez aussi <a href="mailto:contact@chercherdieu.com">nous écrire</a> et échanger avec un disciple de Jésus.</p>
         <div class="actions" style="justify-content:center; margin-top:30px">
-          <a class="button button-primary" href="https://theword.fr/" target="_blank" rel="noopener"><img class="theword-logo" src="theword-icon.png" alt="">The Word</a>
+          <a class="button button-primary" href="https://theword.fr/?b=John&amp;c=1&amp;v=1#reading" target="_blank" rel="noopener"><img class="theword-logo" src="theword-icon.png" alt="">Lire l’Évangile de Jean</a>
           <a class="button button-secondary" href="https://www.youtube.com/@ChercherDieu" target="_blank" rel="noopener">Chaîne YouTube</a>
         </div>
       </div>
